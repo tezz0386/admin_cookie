@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'title' => 'Admin Dashboard-Category-create', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{asset('ckeditor/sample/styles.css')}}">
-<form action="{{route('admin.subcategory.store', $category)}}" method="post" enctype="multipart/form-data">
+<form @if($category) action="{{route('admin.subcategory.store', $category)}}" @else action="{{route('admin.subcategory.store')}}" @endif method="post" enctype="multipart/form-data">
 	<div class="ml-2 mr-2">
 		@if ($errors->any())
 		@foreach ($errors->all() as $error)
