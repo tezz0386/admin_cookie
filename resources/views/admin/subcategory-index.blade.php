@@ -34,7 +34,7 @@
 		<div class="card-body table-full-width table-responsive">
 			<div>
 				<a href="{{route('admin.subcategory.trash')}}" class="btn btn-primary bg-primary float-right ml-2" style="color: white;">View Trashed</a>
-				<a class="btn btn-primary bg-danger float-right" style="color: white;" href="{{route('admin.subcategory.create')}}">Create New</a>
+				<a class="btn btn-primary bg-danger float-right" style="color: white;" href="{{route('admin.subcategory.create-again')}}">Create New</a>
 			</div>
 			<table class="table table-hover">
 				<thead>

@@ -29,8 +29,8 @@
 								@if($category)<option value="{{$category->id}}" >{{$category->title}}</option>@endif
 								@if($categories && count($categories)>0)
 								@foreach($categories as $category1)
-								@if($category1->has_child == true )
-								<option value="{{$category1->id}}">{{$category->title}}</option>
+								@if($category1->has_child == true)
+								<option value="{{$category1->id}}">{{$category1->title}}</option>
 								@endif
 								@endforeach
 								@endif

@@ -38,4 +38,9 @@
      	$trail->parent('admin.subcategory.index');
      	$trail->push('Trash List', route('admin.subcategory.trash'));
      });
+
+     Breadcrumbs::for('admin.subcategory.create-again', function($trail){
+     	$trail->parent('admin.subcategory.index');
+     	$trail->push('Create', route('admin.subcategory.create-again'));
+     });
  ?>

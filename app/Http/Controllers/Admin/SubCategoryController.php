@@ -56,7 +56,13 @@ class SubCategoryController extends Controller
         $this->support->store($request, $category);
         return redirect()->route('admin.subcategory.index')->with('success', 'Successfully 1 Recorded Added');
     }
-
+    public function storeAgain(SubCategoryRequest $request)
+    {
+        //
+        $category = Category::findOrFail($request->parent_id);
+        $this->support->store($request, $category);
+        return redirect()->route('admin.subcategory.index')->with('success', 'Successfully 1 Recorded Added');
+    }
     /**
      * Display the specified resource.
      *

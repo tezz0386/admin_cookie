@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'title' => 'Admin Dashboard-Category-create', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{asset('ckeditor/sample/styles.css')}}">
-<form @if($category) action="{{route('admin.subcategory.store', $category)}}" @else action="{{route('admin.subcategory.store')}}" @endif method="post" enctype="multipart/form-data">
+<form @if($category && !$category== ' ' ) action="{{route('admin.subcategory.store', $category)}}" @else action="{{route('admin.subcategory.store-again')}}" @endif method="post" enctype="multipart/form-data">
 	<div class="ml-2 mr-2">
 		@if ($errors->any())
 		@foreach ($errors->all() as $error)
@@ -28,8 +28,8 @@
 								@if($category)<option value="{{$category->id}}" >{{$category->title}}</option>@endif
 								@if($categories && count($categories)>0)
 								  @foreach($categories as $category1)
-								   @if($category1->has_child == true )
-								   <option value="{{$category1->id}}">{{$category->title}}</option>
+								   @if($category1->has_child == true && !$category1->id == $category->id)
+								   <option value="{{$category1->id}}">{{$category1->title}}</option>
 								   @endif
 								  @endforeach
 								@endif

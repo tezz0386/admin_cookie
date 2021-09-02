@@ -49,6 +49,13 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 			Route::get('/', [SubCategoryController::class, 'index'])->name('admin.subcategory.index');
 			Route::get('/create/{category}', [SubCategoryController::class, 'create'])->name('admin.subcategory.create');
 			Route::post('/create/{category}', [SubCategoryController::class, 'store'])->name('admin.subcategory.store');
+
+			// these two route for sub category management which are not managed by the old route route of crate and store
+			Route::get('/create', [SubCategoryController::class, 'create'])->name('admin.subcategory.create-again');
+			Route::post('/create', [SubCategoryController::class, 'storeAgain'])->name('admin.subcategory.store-again');
+			// end of these two route
+
+			
 			Route::get('/{subCategory}/update', [SubCategoryController::class, 'edit'])->name('admin.subcategory.edit');
 			Route::patch('/{subCategory}/update', [SubCategoryController::class, 'update'])->name('admin.subcategory.update');
 			Route::delete('/{subCategory}', [SubCategoryController::class, 'destroy'])->name('admin.subcategory.destroy');
