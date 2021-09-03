@@ -1,9 +1,8 @@
 <div class="sidebar" data-image="{{ asset('light-bootstrap/img/sidebar-5.jpg') }}">
     <!--
-Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-Tip 2: you can also add an image using data-image tag
--->
+    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+    Tip 2: you can also add an image using data-image tag
+    -->
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.creative-tim.com" class="simple-text">
@@ -17,11 +16,11 @@ Tip 2: you can also add an image using data-image tag
                     <p>{{ __("Dashboard") }}</p>
                 </a>
             </li>
-           
+            
             <!-- <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#laravelExamples" @if($activeButton =='laravel') aria-expanded="true" @endif>
                     <i>
-                        <img src="{{ asset('light-bootstrap/img/laravel.svg') }}" style="width:25px">
+                    <img src="{{ asset('light-bootstrap/img/laravel.svg') }}" style="width:25px">
                     </i>
                     <p>
                         {{ __('Product Category Management') }}
@@ -51,11 +50,14 @@ Tip 2: you can also add an image using data-image tag
                     <p> {{ __('Category Management') }}</p>
                 </a>
             </li>
-
-
-
+            <li class="nav-item @if($activePage == 'icons') active @endif">
+                <a class="nav-link" href="{{route('admin.subcategory.index')}}">
+                    <i class="nc-icon nc-atom"></i>
+                    <p>{{ __("Sub Category Management") }}</p>
+                </a>
+            </li>
             <li class="nav-item @if($activePage == 'typography') active @endif">
-                <a class="nav-link" href="{{route('page.index', 'typography')}}">
+                <a class="nav-link" href="{{route('product.index')}}">
                     <i class="nc-icon nc-paper-2"></i>
                     <p> {{ __('Product Management') }}</p>
                 </a>

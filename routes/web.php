@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 			Route::patch('/{id}/trash', [SubCategoryController::class, 'restore'])->name('admin.subcategory.restore');
 		});
 	});
+	// Route for Product through admin
+	Route::resource('product', ProductController::class);
 });
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard')->prefix('admin');
 

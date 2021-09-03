@@ -10,6 +10,7 @@
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.6",
         "laravel-frontend-presets/light-bootstrap": "^1.0",
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
