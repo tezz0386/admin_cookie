@@ -9,11 +9,15 @@
 			<div>
 				<a href="{{route('product.getTrash')}}" class="btn btn-primary bg-primary float-right ml-2" style="color: white;">View Trashed</a>
 				<a class="btn btn-primary bg-danger float-right" style="color: white;" href="{{route('product.create')}}">Create New</a>
+			    <input type="text" name="search" class="float-right mr-2" style="height: 37px;" placeholder="Search Here">
+			    
+
 			</div>
 			<table class="table table-hover">
 				<thead>
 					<th>#</th>
 					<th>Title</th>
+					<th>Belongs To</th>
 					<th colspan="4">Actions</th>
 				</thead>
 				<tbody>
@@ -22,6 +26,13 @@
 					<tr>
 						<td>{{$n++}}</td>
 						<td>{{$product->title}}</td>
+						<td>
+							@if($product->child_id == null)
+							{{$product->category->title}}
+							@else
+							{{$product->subCategory->title}}
+							@endif
+						</td>
 						<td><a href="{{route('product.show', $product)}}"><i class="fa fa-eye"></i></a></td>
 						<td><a href="{{route('product.edit', $product)}}"><i class="fa fa-edit"></i></a></td>
 						<td>

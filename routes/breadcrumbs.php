@@ -76,4 +76,22 @@
         $trail->push('Show Details', route('product.show', $product));
     });
 
+
+
+
+
+     // for user 
+     Breadcrumbs::for('profile.edit', function ($trail) {
+        $trail->parent('admin.dashboard');
+        $trail->push('Account', route('profile.edit'));
+    });
+
+
+
+     // for icon
+     Breadcrumbs::for('page.index', function ($trail) {
+        $trail->parent('admin.dashboard');
+        $trail->push('Icon', route('page.index', 'icon'));
+     });
+ 
  ?>

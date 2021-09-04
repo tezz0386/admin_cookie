@@ -3,10 +3,10 @@
     Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
     Tip 2: you can also add an image using data-image tag
     -->
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" style="width: 290px;">
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
-                {{ __("Cookie") }}
+            <a href="{{route('admin.dashboard')}}" class="simple-text">
+                <img src="{{asset('front-assets/images/logo.png')}}" height="100">
             </a>
         </div>
         <ul class="nav">
@@ -63,11 +63,24 @@
                 </a>
             </li>
             <li class="nav-item @if($activePage == 'typography') active @endif">
+                <a class="nav-link" href="{{route('product.index')}}">
+                     <i class="nc-icon nc-tv-2"></i>
+                    <p> {{ __('Page Setting') }}</p>
+                </a>
+            </li>
+            <li class="nav-item @if($activePage == 'typography') active @endif">
+                <a class="nav-link" href="{{route('product.index')}}">
+                     <i class="nc-icon nc-settings-gear-64"></i>
+                    <p> {{ __('Site Setting') }}</p>
+                </a>
+            </li>
+
+           <!--  <li class="nav-item @if($activePage == 'typography') active @endif">
                 <a class="nav-link" href="{{route('page.index', 'typography')}}">
                     <i class="nc-icon nc-paper-2"></i>
                     <p> {{ __('Product Management') }}</p>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item @if($activePage == 'icons') active @endif">
                 <a class="nav-link" href="{{route('page.index', 'icons')}}">
                     <i class="nc-icon nc-atom"></i>
@@ -84,12 +97,6 @@
                 <a class="nav-link" href="{{route('page.index', 'notifications')}}">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>{{ __("Notifications") }}</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active bg-danger" href="{{route('page.index', 'upgrade')}}">
-                    <i class="nc-icon nc-alien-33"></i>
-                    <p>{{ __("Upgrade to PRO") }}</p>
                 </a>
             </li>
         </ul>
