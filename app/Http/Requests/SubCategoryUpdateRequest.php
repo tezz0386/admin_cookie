@@ -29,12 +29,12 @@ class SubCategoryUpdateRequest extends FormRequest
             'parent_id'=>'required',
         ];
     }
-    public function message()
+    public function messages()
     {
         return [
             'title.required'=>'The Sub Category Title must be Filled',
             'title.unique'=>'The Title must be unique, you can view on trash or again can create if not created',
-            'parent_id.required'=>'The Parent Title must be selected for furthe process',
+            'parent_id.required'=>'The Parent Title must be selected for further process',
         ];
     }
 }

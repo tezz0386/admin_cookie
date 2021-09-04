@@ -44,6 +44,9 @@
             <div class="@if (auth()->check() && request()->route()->getName() != "") main-panel @endif">
                 @include('layouts.navbars.navbar')
                 {{Breadcrumbs::render()}}
+                @include('pages.error')
+                @include('pages.errors')
+                @include('pages.success')
                 @yield('content')
                 @include('layouts.footer.nav')
             </div>

@@ -27,6 +27,10 @@ class SubCategory extends Model
     {
     	return $this->belongsTo(Category::class, 'parent_id');
     }
+    public function product()
+    {
+        return $this->hasMany(Product::class, 'child_id');
+    }
     public function sluggable(): array
     {
         return [

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Support\CategorySupport;
 use App\Support\ProductSupport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -48,7 +50,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         //
         // return $request;
@@ -69,6 +71,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        return view($this->folder_name.'product-show', ['product'=>$product]);
     }
 
     /**
@@ -80,6 +83,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        return view($this->folder_name.'product-update', ['product'=>$product, 'categories'=>$this->categorySupport->getAll()]);
     }
 
     /**
@@ -92,6 +96,27 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        // if($request->file('image')=='')
+        // {
+        //     return "Empty";
+        // }else{
+        //     return "full";
+        // }
+        $validator = Validator::make($request->all(), [
+            'title'=>'required|unique:products,title,'.$product->id,
+        ], 
+        $message=[
+            'title.required'=>'The Title Field could not be empty',
+            'title.unique'=>'The Title must be unique, if not exist on active list then refer to the trashed list',
+        ]);
+        if ($validator->fails()) {
+            return redirect()
+                        ->route('product.index')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $this->support->update($request, $product);
+        return redirect()->route('product.index')->with('success', 'Successfully 1 product Updated');
     }
 
     /**
@@ -103,5 +128,30 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+       if($product->delete()){
+        return redirect()->route('product.index')->with('success', 'Successfully 1 Record Deleted');
+       }else{
+        return back()->with('error', 'Could not deleted please try again later');
+       }
+    }
+
+    public function getTrash()
+    {
+        $products = Product::onlyTrashed()->orderByDesc('deleted_at')->get();
+        return view($this->folder_name.'product-trash-index', ['products'=>$products, 'n'=>1]);
+    }
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->where('id', $id)->first();
+        if($product->restore())
+        {
+            return redirect()->route('product.index')->with('success', 'Successfully 1 Product Restores');
+        }
+    }
+    public function delete($id)
+    {
+        $product = Product::onlyTrashed()->where('id', $id)->first();
+        $this->support->delete($product);
+        return redirect()->route('product.getTrash')->with('success', 'Succesfuly 1 Product from Trash Permanently Deleted');
     }
 }

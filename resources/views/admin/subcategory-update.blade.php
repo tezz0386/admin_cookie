@@ -38,13 +38,13 @@
 						</div>
 						<div class="form-group">
 							<label>Title</label>
-							<input type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="basic-addon1" name="title" required="required" value="{{$subcategory->title}}">
+							<input type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="basic-addon1" name="title" required="required" value="{{old('title', $subcategory->title)}}">
 						</div>
 						
 						<!-- <input type="text" name="slug" class="form-control" id="slug"> -->
 						<div class="form-group">
 							<label>Description:</label>
-							<textarea class="editor" name="description">{{$subcategory->description}}</textarea>
+							<textarea class="editor" name="description">{{old('description', $subcategory->description)}}</textarea>
 						</div>
 					</div>
 				</div>
@@ -57,15 +57,15 @@
 					<div class="card card-body">
 						<div class="form-group">
 							<label for="meta_title_tag">Meta Title Tag</label>
-							<input type="text" name="title_tag" class="form-control" id="meta_title_tag" value="{{$subcategory->title_tag}}">
+							<input type="text" name="title_tag" class="form-control" id="meta_title_tag" value="{{old('title_tag', $subcategory->title_tag)}}">
 						</div>
 						<div class="form-group">
 							<label for="meta_keywords">Meta Keywords</label>
-							<textarea class="form-control" name="meta_keywords" id="meta_keywords" style="height: 150px;">{{$subcategory->meta_keywords}}</textarea>
+							<textarea class="form-control" name="meta_keywords" id="meta_keywords" style="height: 150px;">{{old('meta_keywords', $subcategory->meta_keywords)}}</textarea>
 						</div>
 						<div class="form-group">
 							<label for="meta_description">Meta Description</label>
-							<textarea class="form-control" name="meta_description" id="meta_description" style="height: 200px;">{{$subcategory->meta_description}}</textarea>
+							<textarea class="form-control" name="meta_description" id="meta_description" style="height: 200px;">{{old('meta_description', $subcategory->meta_description)}}</textarea>
 						</div>
 					</div>
 					<div class="card card-footer">

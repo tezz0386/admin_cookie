@@ -43,11 +43,16 @@
      	$trail->parent('admin.subcategory.index');
      	$trail->push('Create', route('admin.subcategory.create-again'));
      });
+     Breadcrumbs::for('admin.subcategory.show', function($trail, $subCategory){
+        $trail->parent('admin.subcategory.index');
+        $trail->push('Show', route('admin.subcategory.show', $subCategory));
+     });
 
      // for login breadcrums
      Breadcrumbs::for('login', function($trail){
         $trail->push('Login', route('login'));
      });
+
      // for product breadcrumbs
     Breadcrumbs::for('product.index', function ($trail) {
         $trail->parent('admin.dashboard');
@@ -56,6 +61,19 @@
     Breadcrumbs::for('product.create', function($trail){
         $trail->parent('product.index');
         $trail->push('Create', route('product.create'));
+    });
+
+    Breadcrumbs::for('product.edit', function ($trail, $product) {
+        $trail->parent('product.index');
+        $trail->push('Update', route('product.edit', $product));
+    });
+    Breadcrumbs::for('product.getTrash', function ($trail) {
+        $trail->parent('product.index');
+        $trail->push('Trash List', route('product.getTrash'));
+    });
+     Breadcrumbs::for('product.show', function ($trail, $product) {
+        $trail->parent('product.index');
+        $trail->push('Show Details', route('product.show', $product));
     });
 
  ?>

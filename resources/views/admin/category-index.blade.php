@@ -1,31 +1,5 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'title' => 'Admin Dashboard-Category', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 @section('content')
-@if(session()->has('success'))
-<div class="container mt-5">
-	<div class="alert alert-success">
-		<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
-		<i class="nc-icon nc-simple-remove"></i>
-		</button>
-		<span>
-		<b> Success!! - </b> 
-			{{session()->get('success')}}
-	   </span>
-	</div>
-</div>
-@endif
-@if(session()->has('error'))
-<div class="container">
-	<div class="alert alert-danger">
-		<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
-		<i class="nc-icon nc-simple-remove"></i>
-		</button>
-		<span>
-		<b> Error!! - </b> 
-			{{session()->get('error')}}
-	   </span>
-	</div>
-</div>
-@endif
 <div class="col-md-12">
 	<div class="card card-plain table-plain-bg">
 		<div class="card-header ">

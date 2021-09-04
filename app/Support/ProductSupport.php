@@ -27,17 +27,19 @@ class ProductSupport
 	{
 		return Product::orderByDesc('crerate_at')->limit($count)->get();
 	}
+
+	// to store product data
 	public function store($data)
 	{
 		$product = new Product();
 		$product->title=$data->title;
 		$product->description=$data->description;
 		$product->slug = $this->categorySupport->getSlug($data->title);
-		if($data->check=false)
+		if($data->check==true)
 		{
-			$product->parent_id = $data->parent_id;
+			$product->child_id = $data->parent_id;
 		}else{
-			$product->child_id = $data->parent_id;	
+			$product->parent_id = $data->parent_id;	
 		}
 		$image = $this->imageSupport->saveAnyImg($data, $this->folder_name, 'image', $this->width, $this->height);
 		$product->image = $image;
@@ -48,6 +50,51 @@ class ProductSupport
 			return false;
 		}
 	}
+	// to update product data
+	public function update($data, $product)
+	{
+        if(!$data->parent_id == '')
+        {
+           if($data->check==true)
+          {
+              $product->child_id = $data->parent_id;
+              $product->parent_id = null;
+          }else{
+              $product->parent_id = $data->parent_id; 
+              $product->child_id = null;
+          }
+        }
+		if($data->file('image')==''){
+
+		}else{
+			$this->imageSupport->deleteImg($this->folder_name, $product->image);
+			$image = $this->imageSupport->saveAnyImg($data, $this->folder_name, 'image', $this->width, $this->height);
+			$product->image = $image;
+		}
+		$product->title=$data->title;
+		$product->description=$data->description;
+		$product->slug = $this->categorySupport->getSlug($data->title);
+		if($product->save())
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+	// for delete product and image
+	public function delete($data)
+	{
+		$this->imageSupport->deleteImg($this->folder_name, $data->image);
+		if($data->forceDelete())
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+
 }
 
 

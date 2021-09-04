@@ -1,11 +1,12 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'title' => 'Admin Dashboard-product', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 @section('content')
 <div class="container">
-    <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('product.update', $product)}}" method="post" enctype="multipart/form-data">
         @csrf
+        {{method_field('PATCH')}}
         <div class="card">
             <div class="card-header">
-                <center><strong>Product Addon Form</strong></center>
+                <center><strong>Product Update Form</strong></center>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -26,20 +27,20 @@
                 <input type="hidden" name="check" id="check">
                 <div class="form-group">
                     <label for="title">Title: </label>
-                    <input type="text" name="title" class="form-control" value="{{old('title')}}">
+                    <input type="text" name="title" class="form-control" value="{{old('title', $product->title)}}">
                 </div>
 
                 <div class="form-group text-center">
                     <label>
-                          <img src="{{asset('thumbnail.png')}}" id="imgthumbnail" class="img-fluid" alt="Image not found" height="307" width="425">
-                          <input type="file" name="image" id="thumbnail" hidden="hidden" value="{{old('image')}}">
+                          <img @if(!$product->image== '') src="{{asset('uploads/product/thumbnail/'.$product->image)}}" @else src="{{asset('thumbnail.png')}}" @endif  id="imgthumbnail" class="img-fluid" alt="Image not found" height="307" width="425">
+                          <input type="file" name="image" id="thumbnail" hidden="hidden">
                     </label>
                 </div>
 
 
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea name="description" style="height: 250px;" class="form-control">{{old('description')}}</textarea>
+                    <textarea name="description" style="height: 250px;" class="form-control">{{old('description', $product->description)}}</textarea>
                 </div>
             </div>
             <div class="card-footer">

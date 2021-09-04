@@ -27,7 +27,7 @@ class CategoryUpdateRequest extends FormRequest
             'title'=>'required|unique:categories,title,'.$this->category->id,
         ];
     }
-    public function message()
+    public function messages()
     {
         return[
             'title.unique'=>'The title has already taken so please see on trash or on active list',

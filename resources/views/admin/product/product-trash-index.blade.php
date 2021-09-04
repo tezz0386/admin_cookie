@@ -7,8 +7,6 @@
 		</div>
 		<div class="card-body table-full-width table-responsive">
 			<div>
-				<a href="{{route('product.getTrash')}}" class="btn btn-primary bg-primary float-right ml-2" style="color: white;">View Trashed</a>
-				<a class="btn btn-primary bg-danger float-right" style="color: white;" href="{{route('product.create')}}">Create New</a>
 			</div>
 			<table class="table table-hover">
 				<thead>
@@ -22,10 +20,15 @@
 					<tr>
 						<td>{{$n++}}</td>
 						<td>{{$product->title}}</td>
-						<td><a href="{{route('product.show', $product)}}"><i class="fa fa-eye"></i></a></td>
-						<td><a href="{{route('product.edit', $product)}}"><i class="fa fa-edit"></i></a></td>
 						<td>
-							<form action="{{route('product.destroy', $product)}}" method="post">
+							<form action="{{route('product.restore', $product)}}" method="post">
+								@csrf
+								{{method_field('PATCH')}}
+								<button type="submit" class="btn btn-link" style="color: #1DC7EA"><i class="fas fa-trash-restore"></i></button>
+							</form>
+						</td>
+						<td>
+							<form action="{{route('product.delete', $product)}}" method="post">
 								@csrf
 								{{method_field('DELETE')}}
 								<button type="submit" class="btn btn-link" style="color: #1DC7EA"><i class="fa fa-trash"></i></button>

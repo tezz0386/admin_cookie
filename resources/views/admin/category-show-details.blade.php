@@ -40,7 +40,7 @@
 								<button type="submit" class="btn btn-link" style="color: #1DC7EA"><i class="fa fa-trash"></i></button>
 							</form>
 						</td>
-					<td><a href="#"><i class="fa fa-eye"></i></a></td>
+					<td><a href="{{route('admin.subcategory.show', $subcategory)}}"><i class="fa fa-eye"></i></a></td>
 				</tr>
 				@endforeach
 				@else
@@ -55,17 +55,4 @@
 		</div>
 	</div>
 </div>
-@if(session()->has('success'))
-<div class="container mt-5">
-	<div class="alert alert-success">
-		<button type="button" aria-hidden="true" class="close" data-dismiss="alert">
-		<i class="nc-icon nc-simple-remove"></i>
-		</button>
-		<span>
-			<b> Success!! - </b>
-			{{session()->get('success')}}
-		</span>
-	</div>
-</div>
-@endif
 @endsection

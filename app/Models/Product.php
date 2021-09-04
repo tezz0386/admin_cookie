@@ -27,9 +27,9 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    public function subCategories()
+    public function subCategory()
     {
-        return $this->belongTo(SubCategory::class, 'child_id');
+        return $this->belongsTo(SubCategory::class, 'child_id');
     }
 
     public function sluggable(): array

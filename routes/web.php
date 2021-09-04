@@ -65,10 +65,15 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 			Route::get('/trash', [SubCategoryController::class, 'getTrash'])->name('admin.subcategory.trash');
 			// to restore
 			Route::patch('/{id}/trash', [SubCategoryController::class, 'restore'])->name('admin.subcategory.restore');
+			Route::get('/{subCategory}/show', [SubCategoryController::class, 'show'])->name('admin.subcategory.show');
 		});
 	});
 	// Route for Product through admin
 	Route::resource('product', ProductController::class);
+	// to get trash list of product
+	Route::get('/product/trash/list', [ProductController::class, 'getTrash'])->name('product.getTrash');
+	Route::patch('/product/restore/{product}', [ProductController::class, 'restore'])->name('product.restore');
+	Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
 });
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard')->prefix('admin');
 
