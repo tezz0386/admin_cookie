@@ -75,7 +75,7 @@
     <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('light-bootstrap/js/demo.js') }}"></script>
     @yield('scripts')
-    <script>
+   <!--  <script>
       $(document).ready(function () {
         
         $('#facebook').sharrre({
@@ -128,5 +128,5 @@
           url: 'https://light-bootstrap-dashboard-laravel.creative-tim.com/login'
         });
       });
-    </script>
+    </script> -->
 </html>

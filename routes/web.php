@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 	Route::get('/product/trash/list', [ProductController::class, 'getTrash'])->name('product.getTrash');
 	Route::patch('/product/restore/{product}', [ProductController::class, 'restore'])->name('product.restore');
 	Route::delete('/product/delete/{product}', [ProductController::class, 'delete'])->name('product.delete');
+
+
+	// Route for site setting
+	Route::resource('site', SiteController::class);
 });
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard')->prefix('admin');
 
