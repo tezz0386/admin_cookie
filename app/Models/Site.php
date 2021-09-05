@@ -13,11 +13,12 @@ class Site extends Model
         'message',
         'logo',
         'address',
-        'footer_message',
+        'footer_quoation',
         'location',
+        'md_profile',
     ];
     public function contacts()
     {
-        $this->hasMany(Contact::class, 'site_id');
+        $this->hasMany(Contact::class, 'site_id', 'logo', );
     }
 }

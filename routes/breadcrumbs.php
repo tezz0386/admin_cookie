@@ -76,9 +76,25 @@
         $trail->push('Show Details', route('product.show', $product));
     });
 
+    // breadcrumbs for site setting
+     Breadcrumbs::for('site.index', function($trail){
+            $trail->parent('admin.dashboard');
+            $trail->push('Site Setting', route('site.index'));
+     });
 
-
-
+     // breadcrumbs for site contact setting
+     Breadcrumbs::for('contact.index', function($trail){
+        $trail->parent('site.index');
+        $trail->push('Contacts', route('contact.index'));
+     });
+    Breadcrumbs::for('contact.create', function($trail){
+        $trail->parent('contact.index');
+        $trail->push('Create', route('contact.create'));
+     });
+    Breadcrumbs::for('contact.edit', function($trail, $contact){
+        $trail->parent('contact.index');
+        $trail->push('Update', route('contact.edit', $contact));
+    });
 
      // for user 
      Breadcrumbs::for('profile.edit', function ($trail) {

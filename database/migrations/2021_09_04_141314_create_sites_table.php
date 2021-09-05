@@ -17,8 +17,10 @@ class CreateSitesTable extends Migration
             $table->id();
             $table->string('logo');
             $table->longText('message');
-            $table->longText('footer_message');
-            $table->string('addrss');
+            $table->longText('footer_quoation');
+            $table->string('address');
+            $table->string('location')->nullable();
+            $table->string('md_profile')->nullable();
             $table->timestamps();
         });
     }

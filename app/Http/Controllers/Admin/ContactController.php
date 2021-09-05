@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactRequest;
+use App\Http\Requests\ContactUpdateRequest;
 use App\Models\Contact;
+use App\Support\SiteSupport;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    protected $folder_name = 'admin.site.contact.';
+    function __construct(SiteSupport $siteupport)
+    {
+        $this->middleware('auth');
+        $this->support= $siteupport;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +25,7 @@ class ContactController extends Controller
     public function index()
     {
         //
+        return view($this->folder_name.'contact-index', ['contacts'=>$this->support->getAllContacts(), 'n'=>1]);
     }
 
     /**
@@ -26,6 +36,7 @@ class ContactController extends Controller
     public function create()
     {
         //
+        return view($this->folder_name.'contact-create');
     }
 
     /**
@@ -34,9 +45,11 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         //
+        $this->support->storeContact($request);
+        return redirect()->route('contact.index')->with('success', 'Successfully 1 contact added');
     }
 
     /**
@@ -59,6 +72,7 @@ class ContactController extends Controller
     public function edit(Contact $contact)
     {
         //
+        return view($this->folder_name.'contact-edit', ['contact'=>$contact]);
     }
 
     /**
@@ -71,6 +85,9 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         //
+        return $contact;
+        $this->support->updateContact($request, $contact);
+        return redirect()->route('contact.index')->with('success', 'Successfully 1 contact updated');
     }
 
     /**

@@ -69,7 +69,7 @@
                 </a>
             </li>
             <li class="nav-item @if($activePage == 'typography') active @endif">
-                <a class="nav-link" href="{{route('product.index')}}">
+                <a class="nav-link" href="{{route('site.index')}}">
                      <i class="nc-icon nc-settings-gear-64"></i>
                     <p> {{ __('Site Setting') }}</p>
                 </a>

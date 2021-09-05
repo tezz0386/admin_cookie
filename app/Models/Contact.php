@@ -13,8 +13,6 @@ class Contact extends Model
         'contact',
         'email',
         'facebook_link',
-        'twiter_link',
-        'insta_link',
         'site_id',
     ];
 

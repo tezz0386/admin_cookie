@@ -15,7 +15,7 @@
             @endif
             </center>
             <center>
-                $ {{$product-price}}
+                $ {{$product->price}}
             </center>
             <br>
             <center>

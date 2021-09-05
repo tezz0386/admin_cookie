@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -79,6 +80,9 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 
 	// Route for site setting
 	Route::resource('site', SiteController::class);
+
+	Route::resource('contact', ContactController::class);
+	
 });
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard')->prefix('admin');
 
