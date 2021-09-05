@@ -25,19 +25,26 @@
                     </select>
                 </div>
                 <input type="hidden" name="check" id="check">
-                <div class="form-group">
-                    <label for="title">Title: </label>
-                    <input type="text" name="title" class="form-control" value="{{old('title', $product->title)}}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title">Title: </label>
+                            <input type="text" name="title" class="form-control" value="{{old('title', $product->title)}}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title">Price: </label>
+                            <input type="number" name="price" class="form-control" value="{{old('price', $product->price)}}">
+                        </div>
+                    </div>
                 </div>
-
                 <div class="form-group text-center">
                     <label>
-                          <img @if(!$product->image== '') src="{{asset('uploads/product/thumbnail/'.$product->image)}}" @else src="{{asset('thumbnail.png')}}" @endif  id="imgthumbnail" class="img-fluid" alt="Image not found" height="307" width="425">
-                          <input type="file" name="image" id="thumbnail" hidden="hidden">
+                        <img @if(!$product->image== '') src="{{asset('uploads/product/thumbnail/'.$product->image)}}" @else src="{{asset('thumbnail.png')}}" @endif  id="imgthumbnail" class="img-fluid" alt="Image not found" height="307" width="425">
+                        <input type="file" name="image" id="thumbnail" hidden="hidden">
                     </label>
                 </div>
-
-
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <textarea name="description" style="height: 250px;" class="form-control">{{old('description', $product->description)}}</textarea>
@@ -64,7 +71,6 @@ $('#check').val(select);
 }
 });
 });
-
 $('#thumbnail').on('change', function() {
 var file = $(this).get(0).files;
 var reader = new FileReader();
@@ -74,7 +80,5 @@ var image = e.target.result;
 $("#imgthumbnail").attr('src', image);
 });
 });
-
-
 </script>
 @endsection

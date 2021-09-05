@@ -34,6 +34,7 @@ class ProductSupport
 		$product = new Product();
 		$product->title=$data->title;
 		$product->description=$data->description;
+		$product->price = $data->price;
 		$product->slug = $this->categorySupport->getSlug($data->title);
 		if($data->check==true)
 		{
@@ -73,6 +74,7 @@ class ProductSupport
 		}
 		$product->title=$data->title;
 		$product->description=$data->description;
+		$product->price = $data->price;
 		$product->slug = $this->categorySupport->getSlug($data->title);
 		if($product->save())
 		{

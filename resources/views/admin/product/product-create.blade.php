@@ -24,19 +24,26 @@
                     </select>
                 </div>
                 <input type="hidden" name="check" id="check">
-                <div class="form-group">
-                    <label for="title">Title: </label>
-                    <input type="text" name="title" class="form-control" value="{{old('title')}}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title">Title: </label>
+                            <input type="text" name="title" class="form-control" value="{{old('title')}}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title">Price: </label>
+                            <input type="number" name="price" class="form-control" value="{{old('price')}}">
+                        </div>
+                    </div>
                 </div>
-
                 <div class="form-group text-center">
                     <label>
-                          <img src="{{asset('thumbnail.png')}}" id="imgthumbnail" class="img-fluid" alt="Image not found" height="307" width="425">
-                          <input type="file" name="image" id="thumbnail" hidden="hidden" value="{{old('image')}}">
+                        <img src="{{asset('thumbnail.png')}}" id="imgthumbnail" class="img-fluid" alt="Image not found" height="307" width="425">
+                        <input type="file" name="image" id="thumbnail" hidden="hidden" value="{{old('image')}}">
                     </label>
                 </div>
-
-
                 <div class="form-group">
                     <label for="description">Description:</label>
                     <textarea name="description" style="height: 250px;" class="form-control">{{old('description')}}</textarea>
@@ -63,7 +70,6 @@ $('#check').val(select);
 }
 });
 });
-
 $('#thumbnail').on('change', function() {
 var file = $(this).get(0).files;
 var reader = new FileReader();
@@ -73,7 +79,5 @@ var image = e.target.result;
 $("#imgthumbnail").attr('src', image);
 });
 });
-
-
 </script>
 @endsection

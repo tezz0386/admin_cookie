@@ -14,6 +14,9 @@
             <label> Belongs To {{$product->subCategory->title}}</label>            
             @endif
             </center>
+            <center>
+                $ {{$product-price}}
+            </center>
             <br>
             <center>
             <img src="{{asset('uploads/product/thumbnail/'.$product->image)}}" height="307" width="425">
