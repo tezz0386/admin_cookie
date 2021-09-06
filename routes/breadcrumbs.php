@@ -81,7 +81,10 @@
             $trail->parent('admin.dashboard');
             $trail->push('Site Setting', route('site.index'));
      });
-
+     Breadcrumbs::for('site.edit', function($trail, $site){
+        $trail->parent('site.index');
+        $trail->push('Update', route('site.edit', $site));
+     });
      // breadcrumbs for site contact setting
      Breadcrumbs::for('contact.index', function($trail){
         $trail->parent('site.index');
@@ -95,6 +98,48 @@
         $trail->parent('contact.index');
         $trail->push('Update', route('contact.edit', $contact));
     });
+
+
+    // breadcrumbs for site about us setting
+    Breadcrumbs::for('about.index', function($trail){
+        $trail->parent('site.index');
+        $trail->push('About Us', route('about.index'));
+    });
+
+     Breadcrumbs::for('about.create', function($trail){
+        $trail->parent('about.index');
+        $trail->push('Create', route('about.create'));
+    });
+     Breadcrumbs::for('about.edit', function($trail, $aboutUs){
+        $trail->parent('about.index');
+        $trail->push('Update', route('about.edit', $aboutUs));
+     });
+
+     // breadcrumbs for banner
+     Breadcrumbs::for('banner.index', function($trail){
+        $trail->parent('site.index');
+        $trail->push('Banner', route('banner.index'));
+     });
+
+     Breadcrumbs::for('banner.create', function($trail){
+        $trail->parent('banner.index');
+        $trail->push('Create', route('banner.create'));
+     });
+     Breadcrumbs::for('banner.edit', function($trail, $banner){
+        $trail->parent('banner.index');
+        $trail->push('Update', route('banner.edit', $banner));
+     });
+
+
+     // route for special 
+     Breadcrumbs::for('special.index', function($trail){
+        $trail->parent('admin.dashboard');
+        $trail->push('Special', route('special.index'));
+     });
+      Breadcrumbs::for('special.create', function($trail){
+        $trail->parent('special.index');
+        $trail->push('Create', route('special.create'));
+     });
 
      // for user 
      Breadcrumbs::for('profile.edit', function ($trail) {

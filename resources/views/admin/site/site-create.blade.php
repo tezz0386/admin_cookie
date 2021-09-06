@@ -14,6 +14,10 @@
 			<div class="card card-body">
 				<div class="row">
 					<div class="col-md-6">
+						<div class="form-group">
+							<label>Site Title:</label>
+							<input type="text" name="site_title" class="form-control">
+						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<label>Logo Of Site</label>
@@ -35,6 +39,10 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="description">Site Description</label>
+							<textarea class="form-control" style="height: 250px" name="description"></textarea>
+						</div>
+						<div class="form-group">
 							<label for="address">Address:</label>
 							<input type="text" name="address" class="form-control" required="required" placeholder="Your Company Full Address" value="{{old('address')}}">
 						</div>
@@ -42,12 +50,12 @@
 							<label for="address">Location:</label>
 							<input type="text" name="location" class="form-control" placeholder="Embeded Google Map" value="{{old('location')}}">
 						</div>
+					</div>
+					<div class="col-md-6">
 						<div class="form-group">
 							<label for="footer_quoation">Quoation:</label>
 							<textarea name="footer_quoation" id="footer_quoation" class="form-control" style="height: 200px;">{{old('footer_quoation')}}</textarea>
 						</div>
-					</div>
-					<div class="col-md-6">
 						<div class="form-group">
 							<label>Message From MD:</label>
 							<textarea class="form-control editor" name="message">{{old('message')}}</textarea>

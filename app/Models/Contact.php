@@ -11,6 +11,7 @@ class Contact extends Model
     use HasFactory;
     protected $fillable=[
         'contact',
+        'site_id',
         'email',
         'facebook_link',
         'site_id',

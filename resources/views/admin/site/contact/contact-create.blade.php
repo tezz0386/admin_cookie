@@ -1,13 +1,5 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'title' => 'Admin Dashboard-Contact create', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 @section('content')
-<div class="col-md-12 mt-2">
-	 <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Banner Setting</a> /</li>
-        <li class="list-inline-item"><a href="{{route('contact.index')}}">Contact Setting</a> /</li>
-        <li class="list-inline-item"><a href="#">About Us Setting</a></li>
-    </ul>
-</div>
-
 <form action="{{route('contact.store')}}" method="post">
 	@csrf
 	<div class="card">
@@ -33,6 +25,11 @@
 						<input type="text" name="facebook_link" class="form-control" value="{{old('contact')}}">
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="card card-footer">
+			<div>
+				<button type="submit" class="btn btn-primary bg-primary float-right" style="color: white">Submit</button>
 			</div>
 		</div>
 	</div>

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteController;
+use App\Http\Controllers\Admin\SpecialController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -81,7 +84,29 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 	// Route for site setting
 	Route::resource('site', SiteController::class);
 
+	// Route::get('site', [SiteController::class, 'index'])->name('site.index');
+	// Route::group(['prefix'=>'site'], function(){
+	// 	Route::get('/create', [SiteController::class, 'create'])->name('site.create');
+	// 	Route::post('/create', [SiteController::class, 'store'])->name('site.store');
+	// 	Route::get('/{site}/edit', [SiteController::class, 'edit'])->name('site.edit');
+	// 	Route::patch('/{site}/edit', [SiteController::class, 'update'])->name('site.update');
+	// });
+
+
+	// route for contact
 	Route::resource('contact', ContactController::class);
+    
+    // route for about us
+    Route::resource('about', AboutUsController::class);
+
+
+    // route for banner 
+    Route::resource('banner', BannerController::class);
+
+    // Route for today's special
+    Route::get('/special', [SpecialController::class, 'index'])->name('special.index');
+    Route::get('/special/create', [SpecialController::class, 'create'])->name('special.create');
+    Route::post('/special/create', [SpecialController::class, 'store'])->name('special.store');
 	
 });
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard')->prefix('admin');

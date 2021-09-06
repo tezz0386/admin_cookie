@@ -62,6 +62,12 @@
                     <p> {{ __('Product Management') }}</p>
                 </a>
             </li>
+            <li class="nav-item @if($activePage == 'notifications') active @endif">
+                <a class="nav-link" href="{{route('special.index')}}">
+                    <i class="nc-icon nc-bell-55"></i>
+                    <p>{{ __("Todays Special") }}</p>
+                </a>
+            </li>
             <li class="nav-item @if($activePage == 'typography') active @endif">
                 <a class="nav-link" href="{{route('product.index')}}">
                      <i class="nc-icon nc-tv-2"></i>

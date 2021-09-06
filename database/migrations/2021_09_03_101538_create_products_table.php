@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable()->unique();
             $table->string('slug')->unique()->nullable();
             $table->integer('price')->nullable();
+            $table->integer('special_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

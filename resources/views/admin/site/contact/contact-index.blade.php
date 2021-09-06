@@ -2,9 +2,9 @@
 @section('content')
 <div class="col-md-12 mt-2">
 	 <ul class="list-inline">
-        <li class="list-inline-item"><a href="#">Banner Setting</a> /</li>
+        <li class="list-inline-item"><a href="{{route('banner.index')}}">Banner Setting</a> /</li>
         <li class="list-inline-item"><a href="{{route('contact.index')}}">Contact Setting</a> /</li>
-        <li class="list-inline-item"><a href="#">About Us Setting</a></li>
+        <li class="list-inline-item"><a href="{{route('about.index')}}">About Us Setting</a></li>
     </ul>
 </div>
 

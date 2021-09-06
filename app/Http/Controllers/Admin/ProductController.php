@@ -111,7 +111,7 @@ class ProductController extends Controller
         ]);
         if ($validator->fails()) {
             return redirect()
-                        ->route('product.index')
+                        ->back()
                         ->withErrors($validator)
                         ->withInput();
         }

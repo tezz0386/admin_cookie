@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SiteRequest;
-use App\Models\Site;
+use App\Http\Requests\BannerRequest;
+use App\Models\Banner;
 use App\Support\SiteSupport;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class BannerController extends Controller
 {
+    protected $folder_name = 'admin.site.banner.';
     protected $support;
-    protected $folder_name='admin.site.';
     function __construct(SiteSupport $siteSupport)
     {
         $this->middleware('auth');
@@ -25,11 +25,8 @@ class SiteController extends Controller
     public function index()
     {
         //
-        $site = Site::find(1);
-        if(!$site){
-            return view($this->folder_name.'site-create')->with('success', 'Please Manage your site information at first Applied');
-        }
-        return view($this->folder_name.'site-index', ['site'=>$site]);
+        $banners = Banner::orderByDesc('created_at')->get();
+        return view($this->folder_name.'banner-index', ['banners'=>$banners, 'n'=>1]);
     }
 
     /**
@@ -40,11 +37,7 @@ class SiteController extends Controller
     public function create()
     {
         //
-        $site = Site::find(1);
-        if($site){
-          return redirect()->route('site.index');
-        }
-         return view($this->folder_name.'site-create')->with('success', 'Please Manage your site information at first Applied');
+        return view($this->folder_name.'banner-create');
     }
 
     /**
@@ -53,20 +46,20 @@ class SiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SiteRequest $request)
+    public function store(BannerRequest $request)
     {
         //
-        $this->support->store($request);
-        return redirect()->route('site.index')->with('success', 'Successfully Site Setting Managed');
+        $this->support->storeBanner($request);
+        return redirect()->route('banner.index')->with('success', 'Successfully 1 banner has created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Site  $site
+     * @param  \App\Models\banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show(Site $site)
+    public function show(banner $banner)
     {
         //
     }
@@ -74,38 +67,39 @@ class SiteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Site  $site
+     * @param  \App\Models\banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Site $site)
+    public function edit(banner $banner)
     {
         //
-        return view($this->folder_name.'site-index', ['site'=>$site]);
+        return view($this->folder_name.'banner-update', ['banner'=>$banner]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Site  $site
+     * @param  \App\Models\banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site)
+    public function update(Request $request, banner $banner)
     {
         //
-        // return $request;
-        $this->support->update($request, $site);
-        return redirect()->route('site.index')->with('success', 'Successfully Site Information Updated');
+        $this->support->updateBanner($request, $banner);
+        return redirect()->route('banner.index')->with('success', 'Successfully 1 Banner has Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Site  $site
+     * @param  \App\Models\banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Site $site)
+    public function destroy(banner $banner)
     {
         //
+        $this->support->bannerDelete($banner);
+        return redirect()->route('banner.index')->with('success', 'Successfully 1 Bannes has deleted');
     }
 }

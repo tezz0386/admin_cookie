@@ -85,7 +85,7 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         //
-        return $contact;
+        // return $contact;
         $this->support->updateContact($request, $contact);
         return redirect()->route('contact.index')->with('success', 'Successfully 1 contact updated');
     }
@@ -99,5 +99,8 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         //
+        if($contact->delete()){
+            return redirect()->route('contact.index')->with('success', 'Successfully 1 contact has deleted');
+        }
     }
 }
