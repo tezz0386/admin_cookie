@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AboutUsRequest;
 use App\Models\AboutUs;
+use App\Support\MessageSupport;
 use App\Support\SiteSupport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,10 +15,12 @@ class AboutUsController extends Controller
 {
     protected $support;
     protected $folder_name = 'admin.site.about.';
-    function __construct(SiteSupport $siteSupport)
+    protected $messageSupport;
+    function __construct(SiteSupport $siteSupport, MessageSupport $messageSupport)
     {
         $this->middleware('auth');
         $this->support = $siteSupport;
+        $this->messageSupport = $messageSupport;
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +31,7 @@ class AboutUsController extends Controller
     {
         //
         $abouts = $this->support->getAbouts();
-        return view($this->folder_name.'about-index', ['abouts'=>$abouts, 'n'=>1]);
+        return view($this->folder_name.'about-index', ['abouts'=>$abouts, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -40,7 +43,7 @@ class AboutUsController extends Controller
     {
         //
          $site = $this->support->getSite();
-        return view($this->folder_name.'about-create');
+        return view($this->folder_name.'about-create', ['messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -77,7 +80,7 @@ class AboutUsController extends Controller
     {
         //
         $aboutUs = AboutUs::findOrFail($id);
-        return view($this->folder_name.'about-update', ['aboutUs'=>$aboutUs]);
+        return view($this->folder_name.'about-update', ['aboutUs'=>$aboutUs, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**

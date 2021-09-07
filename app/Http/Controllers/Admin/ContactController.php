@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\ContactUpdateRequest;
 use App\Models\Contact;
+use App\Support\MessageSupport;
 use App\Support\SiteSupport;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    protected $messageSupport;
     protected $folder_name = 'admin.site.contact.';
-    function __construct(SiteSupport $siteupport)
+    function __construct(SiteSupport $siteupport, MessageSupport $messageSupport)
     {
         $this->middleware('auth');
         $this->support= $siteupport;
+        $this->messageSupport = $messageSupport;
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +28,7 @@ class ContactController extends Controller
     public function index()
     {
         //
-        return view($this->folder_name.'contact-index', ['contacts'=>$this->support->getAllContacts(), 'n'=>1]);
+        return view($this->folder_name.'contact-index', ['contacts'=>$this->support->getAllContacts(), 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -36,7 +39,7 @@ class ContactController extends Controller
     public function create()
     {
         //
-        return view($this->folder_name.'contact-create');
+        return view($this->folder_name.'contact-create', ['messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -72,7 +75,7 @@ class ContactController extends Controller
     public function edit(Contact $contact)
     {
         //
-        return view($this->folder_name.'contact-edit', ['contact'=>$contact]);
+        return view($this->folder_name.'contact-edit', ['contact'=>$contact, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**

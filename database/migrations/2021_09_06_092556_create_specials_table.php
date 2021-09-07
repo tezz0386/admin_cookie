@@ -15,7 +15,7 @@ class CreateSpecialsTable extends Migration
     {
         Schema::create('specials', function (Blueprint $table) {
             $table->id();
-            $table->integer('special_title');
+            $table->integer('special_title')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

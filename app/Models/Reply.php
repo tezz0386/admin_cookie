@@ -5,7 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Reply extends Model
 {
     use HasFactory;
+    protected $fillable=[
+    	'admin_id',
+    	'message_id',
+    	'name',
+    	'subject',
+    	'message',
+    ];
 }

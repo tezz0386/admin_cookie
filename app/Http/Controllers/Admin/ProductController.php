@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Support\CategorySupport;
+use App\Support\MessageSupport;
 use App\Support\ProductSupport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,11 +17,13 @@ class ProductController extends Controller
 	protected $folder_name = 'admin.product.';
 	protected $support;
 	protected $categorySupport;
-	function __construct(ProductSupport $support)
+    protected $messageSupport;
+	function __construct(ProductSupport $support, MessageSupport $messageSupport)
 	{
 		$this->middleware('auth');
 		$this->support=$support;
 		$this->categorySupport = new CategorySupport();
+        $this->messageSupport = $messageSupport;
 	}
     /**
      * Display a listing of the resource.
@@ -30,7 +33,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view($this->folder_name.'product-index', ['products'=>$this->support->getAll(), 'n'=>1]);
+        return view($this->folder_name.'product-index', ['products'=>$this->support->getAll(), 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -41,7 +44,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view($this->folder_name.'product-create', ['categories'=>$this->categorySupport->getAll()]);
+        return view($this->folder_name.'product-create', ['categories'=>$this->categorySupport->getAll(), 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -71,7 +74,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
-        return view($this->folder_name.'product-show', ['product'=>$product]);
+        return view($this->folder_name.'product-show', ['product'=>$product, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -83,7 +86,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return view($this->folder_name.'product-update', ['product'=>$product, 'categories'=>$this->categorySupport->getAll()]);
+        return view($this->folder_name.'product-update', ['product'=>$product, 'categories'=>$this->categorySupport->getAll(), 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -138,7 +141,7 @@ class ProductController extends Controller
     public function getTrash()
     {
         $products = Product::onlyTrashed()->orderByDesc('deleted_at')->get();
-        return view($this->folder_name.'product-trash-index', ['products'=>$products, 'n'=>1]);
+        return view($this->folder_name.'product-trash-index', ['products'=>$products, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
     public function restore($id)
     {

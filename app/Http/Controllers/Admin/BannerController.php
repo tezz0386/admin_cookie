@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
+use App\Support\MessageSupport;
 use App\Support\SiteSupport;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,12 @@ class BannerController extends Controller
 {
     protected $folder_name = 'admin.site.banner.';
     protected $support;
-    function __construct(SiteSupport $siteSupport)
+    protected $messageSupport;
+    function __construct(SiteSupport $siteSupport MessageSupport $messageSupport)
     {
         $this->middleware('auth');
         $this->support = $siteSupport;
+        $this->messageSupport = $messageSupport;
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +29,7 @@ class BannerController extends Controller
     {
         //
         $banners = Banner::orderByDesc('created_at')->get();
-        return view($this->folder_name.'banner-index', ['banners'=>$banners, 'n'=>1]);
+        return view($this->folder_name.'banner-index', ['banners'=>$banners, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -37,7 +40,7 @@ class BannerController extends Controller
     public function create()
     {
         //
-        return view($this->folder_name.'banner-create');
+        return view($this->folder_name.'banner-create','messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1);
     }
 
     /**
@@ -73,7 +76,7 @@ class BannerController extends Controller
     public function edit(banner $banner)
     {
         //
-        return view($this->folder_name.'banner-update', ['banner'=>$banner]);
+        return view($this->folder_name.'banner-update', ['banner'=>$banner, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**

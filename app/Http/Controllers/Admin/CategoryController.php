@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Support\CategorySupport;
+use App\Support\MessageSupport;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
@@ -17,22 +18,24 @@ class CategoryController extends Controller
     protected $category;
     protected $categories;
     protected $categorySupport;
-    function __construct(CategorySupport $categorySupport)
+    protected $messageSupport;
+    function __construct(CategorySupport $categorySupport, MessageSupport $messageSupport)
     {
     	$this->middleware('auth');
     	$this->category = new Category();
     	$this->categorySupport = $categorySupport;
+        $this->messageSupport = $messageSupport;
     }
     public function index()
     {
     	// index goes here
     	$this->categories = $this->categorySupport->getAll();
-    	return view('admin.category-index', ['categories'=>$this->categories, 'n'=>1]);
+    	return view('admin.category-index', ['categories'=>$this->categories, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
     public function create()
     {
     	// category creation goes here
-    	return view('admin.category-create');
+    	return view('admin.category-create', ['messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
     public function store(CategoryRequest $request)
     {
@@ -61,7 +64,7 @@ class CategoryController extends Controller
     // to get trash
     public function getTrash()
     {
-    	return view('admin.category-trash-index', ['categories'=>$this->categorySupport->getTrash(), 'n'=>1]);
+    	return view('admin.category-trash-index', ['categories'=>$this->categorySupport->getTrash(), 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     // to restore
@@ -73,6 +76,6 @@ class CategoryController extends Controller
     // for view detail of category including the included sub category
     public function details(Category $category)
     {
-        return view('admin.category-show-details', ['category'=>$category, 'n'=>1]);
+        return view('admin.category-show-details', ['category'=>$category, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 }

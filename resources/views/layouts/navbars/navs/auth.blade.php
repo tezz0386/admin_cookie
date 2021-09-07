@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"> {{ $navName }} </a>
+        <a class="navbar-brand" href="#">  </a>
         <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar burger-lines"></span>
             <span class="navbar-toggler-bar burger-lines"></span>
@@ -11,16 +11,18 @@
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                         <i class="nc-icon nc-planet"></i>
-                        <span class="notification">5</span>
+                        @if(isset($messages) && count($messages)>0)
+                           <span class="notification">{{count($messages)}}</span>
+                        @endif
                         <span class="d-lg-none">{{ __('Notification') }}</span>
                     </a>
+                    @if(isset($messages) && count($messages)>0)
                     <ul class="dropdown-menu">
-                        <a class="dropdown-item" href="#">{{ __('Notification 1') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Notification 2') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Notification 3') }}3</a>
-                        <a class="dropdown-item" href="#">{{ __('Notification 4') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Another notification') }}</a>
+                        @foreach($messages as $message)
+                        <a class="dropdown-item" href="{{route('message.show', $message)}}">@if($message->is_feedback == false) Message From: {{$message->first_name}}  @else Feed Back From : {{$message->first_name}} @endif</a>
+                        @endforeach
                     </ul>
+                    @endif
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

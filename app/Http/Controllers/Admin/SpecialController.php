@@ -6,16 +6,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Special;
+use App\Support\MessageSupport;
 use Illuminate\Http\Request;
 
 class SpecialController extends Controller
 {
+    protected $messageSupport;
     protected $folder_name = 'admin.special.';
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct(MessageSupport $messageSupport)
+    {
+        $this->middleware('auth');
+        $this->messageSupport = $messageSupport;
+    }
     public function index()
     {
         //
@@ -23,7 +30,7 @@ class SpecialController extends Controller
         $special = Special::with('products')->orderByDesc('created_at')->first();
         // return $special;
        // returning last today special
-         return view($this->folder_name.'special-index', ['special'=>$special, 'n'=>1]);
+         return view($this->folder_name.'special-index', ['special'=>$special, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -35,7 +42,7 @@ class SpecialController extends Controller
     {
         //
         $products = Product::orderByDesc('created_at')->get();
-        return view($this->folder_name.'special-create', ['products'=>$products, 'n'=>1]);
+        return view($this->folder_name.'special-create', ['products'=>$products, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**

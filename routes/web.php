@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteController;
@@ -38,6 +39,7 @@ Route::group(['prefix'=>'super', 'middleware'=>'role:super'], function(){
 });
 // rouet for admin
 Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
+	Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard');
 	Route::get('/home', [HomeController::class, 'index'])->name('admin.dashboard');
 	// for category
 	Route::get('/category', [CategoryController::class, 'index'])->name('admin.category.index');
@@ -116,6 +118,14 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
     Route::get('/page/{page}/edit', [PageController::class, 'edit'])->name('page.edit');
     Route::patch('/page/{page}', [PageController::class, 'update'])->name('page.update');
     Route::get('slug/test/page', [PageController::class, 'testSlug'])->name('page.testSlug');
+
+
+    // Route for mail
+    Route::get('/mail/{message}/show', [MessageController::class, 'show'])->name('message.show');
+    Route::group(['prefix'=>'mail'], function(){
+    	Route::get('reply/{message}', [MessageController::class, 'getReply'])->name('message.reply');
+    	Route::post('reply/{message}', [MessageController::class, 'postReply'])->name('message.postReply');
+    });
 	
 });
 

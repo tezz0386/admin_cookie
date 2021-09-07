@@ -149,6 +149,18 @@
         $trail->push('Update', route('page.edit', $page));
       });
 
+      // for mail
+      Breadcrumbs::for('message.show', function($trail, $message){
+        $trail->parent('admin.dashboard');
+        $trail->push('Inbox', route('message.show', $message));
+      });
+
+     Breadcrumbs::for('message.reply', function ($trail, $message) {
+       $trail->parent('message.show', $message);
+       $trail->push('Reply', route('message.reply', $message));
+     });
+
+
      // for user 
      Breadcrumbs::for('profile.edit', function ($trail) {
         $trail->parent('admin.dashboard');

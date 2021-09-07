@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SiteRequest;
 use App\Models\Site;
+use App\Support\MessageSupport;
 use App\Support\SiteSupport;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,12 @@ class SiteController extends Controller
 {
     protected $support;
     protected $folder_name='admin.site.';
-    function __construct(SiteSupport $siteSupport)
+    protected $messageSupport;
+    function __construct(SiteSupport $siteSupport, MessageSupport $messageSupport)
     {
         $this->middleware('auth');
         $this->support = $siteSupport;
+        $this->messageSupport = $messageSupport;
     }
     /**
      * Display a listing of the resource.
@@ -29,7 +32,7 @@ class SiteController extends Controller
         if(!$site){
             return view($this->folder_name.'site-create')->with('success', 'Please Manage your site information at first Applied');
         }
-        return view($this->folder_name.'site-index', ['site'=>$site]);
+        return view($this->folder_name.'site-index', ['site'=>$site, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -42,9 +45,9 @@ class SiteController extends Controller
         //
         $site = Site::find(1);
         if($site){
-          return redirect()->route('site.index');
+          return redirect()->route('site.index', ['messages'=>$this->messageSupport->getOnlyNotRead()]);
         }
-         return view($this->folder_name.'site-create')->with('success', 'Please Manage your site information at first Applied');
+         return view($this->folder_name.'site-create', ['messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1])->with('success', 'Please Manage your site information at first Applied');
     }
 
     /**
@@ -80,7 +83,7 @@ class SiteController extends Controller
     public function edit(Site $site)
     {
         //
-        return view($this->folder_name.'site-index', ['site'=>$site]);
+        return view($this->folder_name.'site-index', ['site'=>$site, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**

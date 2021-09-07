@@ -8,6 +8,7 @@ use App\Http\Requests\SubCategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Support\CategorySupport;
+use App\Support\MessageSupport;
 use App\Support\SubCategorySupport;
 use Illuminate\Http\Request;
 
@@ -15,11 +16,13 @@ class SubCategoryController extends Controller
 {
     protected $support;
     protected $categorySupport;
-    function __construct(SubCategorySupport $subCategorySupport, CategorySupport $categorySupport)
+    protected $messageSupport;
+    function __construct(SubCategorySupport $subCategorySupport, CategorySupport $categorySupport, MessageSupport $messageSupport)
     {
         $this->middleware('auth');
         $this->support = $subCategorySupport;
         $this->categorySupport=$categorySupport;
+        $this->messageSupport = $messageSupport;
     }
 
     /**
@@ -30,7 +33,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         //
-        return view('admin.subcategory-index', ['subcategories'=>$this->support->getAll(), 'n'=>1]);
+        return view('admin.subcategory-index', ['subcategories'=>$this->support->getAll(), 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -41,7 +44,7 @@ class SubCategoryController extends Controller
     public function create(Category $category)
     {
         //
-        return view('admin.subcategory-create', ['category'=>$category, 'categories'=>$this->categorySupport->getAll()]);
+        return view('admin.subcategory-create', ['category'=>$category, 'categories'=>$this->categorySupport->getAll(), 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -72,7 +75,7 @@ class SubCategoryController extends Controller
     public function show(SubCategory $subCategory)
     {
         //
-        return view('admin.subcategory-show', ['subcategory'=>$subCategory]);
+        return view('admin.subcategory-show', ['subcategory'=>$subCategory, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -85,7 +88,7 @@ class SubCategoryController extends Controller
     {
         // to return a view with subcategory
 
-        return view('admin.subcategory-update', ['category'=>$this->categorySupport->getParticular($subCategory->parent_id), 'categories'=>$this->categorySupport->getAll(), 'subcategory'=>$subCategory]);
+        return view('admin.subcategory-update', ['category'=>$this->categorySupport->getParticular($subCategory->parent_id), 'categories'=>$this->categorySupport->getAll(), 'subcategory'=>$subCategory, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -119,7 +122,7 @@ class SubCategoryController extends Controller
     }
     public function getTrash()
     {
-        return view('admin.subcategory-trash-index', ['categories'=>$this->support->getTrash(), 'n'=>1]);
+        return view('admin.subcategory-trash-index', ['categories'=>$this->support->getTrash(), 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
     public function restore($id)
     {

@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PageUpdateRequest;
 use App\Models\Page;
+use App\Support\MessageSupport;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 
 class PageController extends Controller
 {
     protected $folder_name = 'admin.page.';
-    function __construct()
+    protected $messageSupport;
+    function __construct(MessageSupport $messageSupport)
     {
         $this->middleware('auth');
+        $this->messageSupport = $messageSupport;
     }
     /**
      * Display a listing of the resource.
@@ -24,7 +27,7 @@ class PageController extends Controller
     {
         //
         $pages = Page::orderByDesc('created_at')->get();
-        return view($this->folder_name.'page-index', ['pages'=>$pages, 'n'=>1]);
+        return view($this->folder_name.'page-index', ['pages'=>$pages, 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     public function edit(Page $page)
@@ -32,7 +35,7 @@ class PageController extends Controller
         //
         // $pages = Page::findOrFail($id);
         // return $page;
-        return view($this->folder_name.'page-update', ['page'=>$page]);
+        return view($this->folder_name.'page-update', ['page'=>$page, 'messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
