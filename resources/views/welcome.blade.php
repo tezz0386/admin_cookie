@@ -1,10 +1,21 @@
 @extends('layouts.front-app')
 @section('content')
-
 <div id="content" class="site-content">
     <div class="wrapper">
         <div id="featured-slider" class="main-slider ">
             <div class="owl-carousel owl-theme slider-main">
+                @if(isset($banners) && count($banners)>0)
+                @foreach($banners as $banner)
+                <div class="item main-banner">
+                    <img src="{{asset('uploads/banner/thumnail/'.$banner->image)}}" class="img-fluid">
+                    <div class="main-sl-content">
+                        
+                        <h1>{{$banner->heading}}</h1>
+                        
+                    </div>
+                </div>
+                @endforeach
+                @else
                 <div class="item main-banner">
                     <img src="{{asset('front-assets/images/msl-01.jpg')}}" class="img-fluid">
                     <div class="main-sl-content">
@@ -29,6 +40,7 @@
                         
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         <div id="About-us" class=" main-section about-section w3-animate-fading w3-animate-zoom w3-animate-top">

@@ -15,7 +15,7 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->ineteer('site_id');
+            $table->integer('site_id');
             $table->string('email')->unique()->nullable();
             $table->string('contact')->unique()->nullable();
             $table->string('facebook_link')->unique()->nullable();

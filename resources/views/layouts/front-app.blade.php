@@ -15,19 +15,15 @@ The above copyright notice and this permission notice shall be included in all c
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('light-bootstrap/img/apple-icon.png') }}"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <!-- for bootstrap include -->
-    <link href="{{ asset('light-bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
-    <!-- <link href="{{ asset('light-bootstrap/css/light-bootstrap-dashboard.css?v=2.0.0') }} " rel="stylesheet" /> -->
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <!-- <link href="{{ asset('light-bootstrap/css/demo.css') }}" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/custom.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/mobile.css')}}">
@@ -66,21 +62,6 @@ The above copyright notice and this permission notice shall be included in all c
                 </li>
                 <!-- <li class="nav-item"><a class="nav-link" href="blog.html"> Product </a></li> -->
                 <li class="nav-item"><a class="nav-link" href="contact.html"> Contact </a></li>
-                <!-- <li class="nav-item contact-nav"><a class="nav-link" href="#"> <i class="fas fa-bars"></i></a></li> -->
-                <!-- <li class="nav-item burgar-nav"><nav id="js-nav" class="nav">
-                  <ul class="list">
-                    <li> <a href="blog.html"><img src="assets/images/product-01.jpg" class="img-fluid"></a></li>
-                    <li><a href="blog.html"> <img src="assets/images/product-04.jpg" class="img-fluid"></a></li>
-                    <li><a href="blog.html"> <img src="assets/images/product-08.jpg" class="img-fluid"></a></li>
-                    <li><a href="blog.html"> <img src="assets/images/product-05.jpg" class="img-fluid"></a></li>
-                    <li><a href="blog.html"> <img src="assets/images/bt.jpg" class="img-fluid"></a></li>
-                  </ul>
-                </nav>
-                <button id="js-hamburger" class="hamburger" type="button">
-                <span id="js-top-line" class="top-line"></span>
-                <span id="js-center-line" class="center-line"></span>
-                <span id="js-bottom-line" class="bottom-line"></span>
-              </button></li> -->
             </ul>
             </div> <!-- navbar-collapse.// -->
           </div>
@@ -143,18 +124,5 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="{{asset('front-assets/js/hamburger1.js')}}"></script>
   <script type="text/javascript" src="{{asset('front-assets/js/script.js')}}"></script>
-  <!-- <script src="{{ asset('light-bootstrap/js/plugins/jquery.sharrre.js') }}"></script> -->
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <!-- <script src="{{ asset('light-bootstrap/js/plugins/bootstrap-switch.js') }}"></script> -->
-  <!--  Google Maps Plugin    -->
-  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
-  <!--  Chartist Plugin  -->
-  <!-- <script src="{{ asset('light-bootstrap/js/plugins/chartist.min.js') }}"></script> -->
-  <!--  Notifications Plugin    -->
-  <!-- <script src="{{ asset('light-bootstrap/js/plugins/bootstrap-notify.js') }}"></script> -->
-  <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-  <!-- <script src="{{ asset('light-bootstrap/js/light-bootstrap-dashboard.js?v=2.0.0') }}" type="text/javascript"></script> -->
-  <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-  <!-- <script src="{{ asset('light-bootstrap/js/demo.js') }}"></script> -->
   @yield('scripts')
 </html>

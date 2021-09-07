@@ -83,7 +83,7 @@
              <li class="nav-item @if($activePage == 'notifications') active @endif">
                 <a class="nav-link" href="{{route('page.index', 'notifications')}}">
                     <i class="nc-icon nc-bell-55"></i>
-                    <p>{{ __("Notifications") }} <label style="background: red; color: white; width: 38px; text-align: center; margin-left: 2px;">{{count($messages)}}</label></p>
+                    <p>{{ __("Mail") }} <label style="background: red; color: white; width: 38px; text-align: center; margin-left: 2px;"> @if(isset($message)) {{count($messages)}} @endif</label></p>
                 </a>
             </li>
         </ul>

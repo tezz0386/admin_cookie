@@ -68,7 +68,7 @@ class SiteSupport
 	{
 		$contact = new Contact();
 		$contact->fill($data->all());
-		$sontact->site_id = 1;
+		$contact->site_id = 1;
 		if($contact->save()){
 			return true;
 		}else{
