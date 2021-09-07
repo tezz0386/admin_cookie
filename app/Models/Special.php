@@ -15,10 +15,10 @@ class Special extends Model
     	'special_title',
     ];
 
-    // public function product()
-    // {
-    // 	return $this->belongsToMany(Product::class, 'product_id');
-    // }
+    public function products()
+    {
+    	return $this->hasMany(Product::class, 'special_id');
+    }
 
 
 }

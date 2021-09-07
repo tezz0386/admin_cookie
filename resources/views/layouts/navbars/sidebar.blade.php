@@ -11,7 +11,7 @@
         </div>
         <ul class="nav">
             <li class="nav-item @if($activePage == 'dashboard') active @endif">
-                <a class="nav-link" href="{{route('dashboard')}}">
+                <a class="nav-link" href="{{route('admin.dashboard')}}">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>{{ __("Dashboard") }}</p>
                 </a>
@@ -69,7 +69,7 @@
                 </a>
             </li>
             <li class="nav-item @if($activePage == 'typography') active @endif">
-                <a class="nav-link" href="{{route('product.index')}}">
+                <a class="nav-link" href="{{route('page.index')}}">
                      <i class="nc-icon nc-tv-2"></i>
                     <p> {{ __('Page Setting') }}</p>
                 </a>

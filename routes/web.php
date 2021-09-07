@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\SpecialController;
@@ -107,10 +108,23 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
     Route::get('/special', [SpecialController::class, 'index'])->name('special.index');
     Route::get('/special/create', [SpecialController::class, 'create'])->name('special.create');
     Route::post('/special/create', [SpecialController::class, 'store'])->name('special.store');
+
+
+
+    // Route for SEO
+    Route::get('/page', [PageController::class, 'index'])->name('page.index');
+    Route::get('/page/{page}/edit', [PageController::class, 'edit'])->name('page.edit');
+    Route::patch('/page/{page}', [PageController::class, 'update'])->name('page.update');
+    Route::get('slug/test/page', [PageController::class, 'testSlug'])->name('page.testSlug');
 	
 });
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('dashboard')->prefix('admin');
 
+
+
+// Route::get('/admin/home', [HomeController::class, 'index'])->name('dashboard');
+
+
+// Rooute for profile
 Route::group(['middleware' => 'auth', 'prefix'=>'admin'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
@@ -118,7 +132,7 @@ Route::group(['middleware' => 'auth', 'prefix'=>'admin'], function () {
 	Route::patch('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-Route::group(['middleware' => 'auth', 'prefix'=>'admin'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
-});
+// Route::group(['middleware' => 'auth', 'prefix'=>'admin'], function () {
+// 	// Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
+// });
 

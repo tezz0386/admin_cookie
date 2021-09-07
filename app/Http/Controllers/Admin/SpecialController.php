@@ -19,10 +19,11 @@ class SpecialController extends Controller
     public function index()
     {
         //
-        $specials = Special::with('products')->orderByDesc('created_at')->get();
-        // return $specials;
-        // return view($this->folder_name.'special-index', ['specials'=>$specials, 'n'=>1]);
-         return view($this->folder_name.'special-index');
+        // getting last tody special
+        $special = Special::with('products')->orderByDesc('created_at')->first();
+        // return $special;
+       // returning last today special
+         return view($this->folder_name.'special-index', ['special'=>$special, 'n'=>1]);
     }
 
     /**
@@ -46,25 +47,23 @@ class SpecialController extends Controller
     public function store(Request $request)
     {
         //
-        // $special = '';
-        // $special = Special::find(1);
-        // if(!$special){
-        //     $special = new Special();   
-        // }
-        // $special->save();
-        // $id = $request->product_id;
-        // if(isset($request->product_id)){
-        //     $count = count($request->product_id);
-        //     if($count>0){
-        //         for ($i=0; $i <$count ; $i++) { 
-        //           $product = Product::findOrFail($id[$i]);
-        //           $product->special_id = $special->id;
-        //           $product->save();
-        //         }
-        //     }else{
-        //         return back()->with('error', 'Please select at least one product to create today special');
-        //     }
-        // }
+        $id = $request->product_id;
+        if(isset($request->product_id)){
+            $count = count($request->product_id);
+            if($count>0){
+                $special = new Special();   
+                $special->save();
+                for ($i=0; $i <$count ; $i++) { 
+                  $product = Product::findOrFail($id[$i]);
+                  $product->special_id = $special->id;
+                  $product->save();
+                }
+            }else{
+                return back()->with('error', 'Please select at least one product to create today special');
+            }
+        }else{
+            return back()->with('error', 'Please select at least one product to create today special');
+        }
         return redirect()->route('special.index')->with('success', 'Successfully New Special Created');
 
     }

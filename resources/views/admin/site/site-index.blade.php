@@ -73,7 +73,7 @@
 			</div>
 			<div class="card card-footer">
 				<div>
-					<button class="btn btn-primary float-right btn-lg bg-primary" style="color: white;" type="submit">Submit</button>
+					<button class="btn btn-primary float-right btn-lg bg-primary" style="color: white;" type="submit">Update</button>
 				</div>
 			</div>
 		</div>

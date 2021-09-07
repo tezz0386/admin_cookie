@@ -141,6 +141,14 @@
         $trail->push('Create', route('special.create'));
      });
 
+
+
+      // for page information update
+      Breadcrumbs::for('page.edit', function($trail, $page){
+        $trail->parent('page.index');
+        $trail->push('Update', route('page.edit', $page));
+      });
+
      // for user 
      Breadcrumbs::for('profile.edit', function ($trail) {
         $trail->parent('admin.dashboard');

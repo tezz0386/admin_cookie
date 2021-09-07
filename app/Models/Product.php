@@ -26,10 +26,10 @@ class Product extends Model
         'special_id',
     ];
 
-    // public function specials()
-    // {
-    //      return $this->belongsToMany(Sepcial::class, 'special_id');
-    // }
+    public function special()
+    {
+         return $this->belongsTo(Sepcial::class, 'special_id');
+    }
 
     
     public function category()
