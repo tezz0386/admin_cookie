@@ -37,7 +37,7 @@
                         <span class="no-icon">{{ __('Account') }}</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+              <!--   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="no-icon">{{ __('Dropdown') }}</span>
                     </a>
@@ -49,7 +49,7 @@
                         <div class="divider"></div>
                         <a class="dropdown-item" href="#">{{ __('Separated link') }}</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf

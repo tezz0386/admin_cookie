@@ -18,7 +18,7 @@ class CreatePagesTable extends Migration
             $table->string('slug')->unique();
             $table->string('title')->unique();
             $table->string('title_tag')->unique();
-            $table->longText('meta_tag')->unique();
+            $table->longText('meta_description')->unique();
             $table->longText('meta_keywords')->unique();
             $table->timestamps();
         });

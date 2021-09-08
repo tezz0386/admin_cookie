@@ -13,7 +13,7 @@ class Page extends Model
     protected $fillable =[
         'title',
     	'title_tag',
-    	'meta_tag',
+    	'meta_description',
     	'meta_keywords',
     	'slug',
     ];

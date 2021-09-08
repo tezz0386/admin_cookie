@@ -14,7 +14,7 @@
 					<div class="col-md-6 col-lg-6">
 						<div class="form-group">
 							<label for="heading">Heading: </label>
-							<input type="text" name="heading" class="form-control" value="{{old('heading', $aboutUs->heading)}}" required="required">
+							<input type="text" name="heading" class="form-control" value="{{old('heading', $aboutUs->heading)}}" readonly="readonly">
 						</div>
 						<label>Image</label>
 						<div class="form-group">

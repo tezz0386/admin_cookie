@@ -13,6 +13,7 @@ class AboutUs extends Model
     	'site_id',
     	'heading',
     	'description',
-    	'image'
+    	'image',
+    	'slug'
     ];
 }

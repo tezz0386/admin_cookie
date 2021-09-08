@@ -159,7 +159,10 @@
        $trail->parent('message.show', $message);
        $trail->push('Reply', route('message.reply', $message));
      });
-
+     Breadcrumbs::for('message.index', function($trail){
+        $trail->parent('admin.dashboard');
+        $trail->push('Inbox', route('message.index'));
+     });
 
      // for user 
      Breadcrumbs::for('profile.edit', function ($trail) {

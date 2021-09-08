@@ -19,7 +19,7 @@
 			</div>
 			<div class="card card-footer">
 				<div>
-					<a href="{{route('message.getReply', $message)}}" style="size: 30px; font-size: 30px"><i class="fa fa-reply" aria-hidden="true"></i></a>
+					<a href="{{route('message.reply', $message)}}" style="size: 30px; font-size: 30px"><i class="fa fa-reply" aria-hidden="true"></i></a>
 					<a href="#" style="size: 30px; font-size: 30px" class="ml-4"><i class="fa fa-trash" aria-hidden="true"></i></a>
 				</div>
 			</div>

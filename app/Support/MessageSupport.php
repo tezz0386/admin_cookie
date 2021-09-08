@@ -15,7 +15,7 @@ use App\Models\Message;
 
 		public function getAll()
 		{
-			return Message::all();
+			return Message::orderByDesc('created_at')->get();
 		}
 		public function getOnlyRead()
 		{

@@ -6,7 +6,7 @@
     <div class="sidebar-wrapper" style="width: 290px;">
         <div class="logo">
             <a href="{{route('admin.dashboard')}}" class="simple-text">
-                <img src="{{asset('front-assets/images/logo.png')}}" height="100">
+                <img @if(! SITE_LOGO == '') src="{{asset('uploads/site/thumbnail/'.SITE_LOGO)}}"  @else  src="{{asset('front-assets/images/logo.png')}}" @endif  height="100">
             </a>
         </div>
         <ul class="nav">
@@ -81,7 +81,7 @@
                 </a>
             </li>
              <li class="nav-item @if($activePage == 'notifications') active @endif">
-                <a class="nav-link" href="{{route('page.index', 'notifications')}}">
+                <a class="nav-link" href="{{route('message.index')}}">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>{{ __("Mail") }} <label style="background: red; color: white; width: 38px; text-align: center; margin-left: 2px;"> @if(isset($message)) {{count($messages)}} @endif</label></p>
                 </a>

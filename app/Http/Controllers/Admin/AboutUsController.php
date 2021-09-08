@@ -42,8 +42,8 @@ class AboutUsController extends Controller
     public function create()
     {
         //
-         $site = $this->support->getSite();
-        return view($this->folder_name.'about-create', ['messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
+        //  $site = $this->support->getSite();
+        // return view($this->folder_name.'about-create', ['messages'=>$this->messageSupport->getOnlyNotRead(), 'n'=>1]);
     }
 
     /**
@@ -55,8 +55,8 @@ class AboutUsController extends Controller
     public function store(AboutUsRequest $request)
     {
         //
-        $this->support->storeAbout($request);
-        return redirect()->route('about.index')->with('success', 'Successfully 1 Record Added');;
+        // $this->support->storeAbout($request);
+        // return redirect()->route('about.index')->with('success', 'Successfully 1 Record Added');;
     }
 
     /**

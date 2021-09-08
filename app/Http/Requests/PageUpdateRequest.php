@@ -28,7 +28,7 @@ class PageUpdateRequest extends FormRequest
             'title'=>'required|unique:pages,title,'.$this->page->id,
             'title_tag'=>'required|unique:pages,title_tag,'.$this->page->id,
             // 'slug'=>'required|unique:pages,slug,'.$this->page->id,
-            'meta_tag'=>'required|unique:pages,meta_tag,'.$this->page->id,
+            'meta_description'=>'required|unique:pages,meta_description,'.$this->page->id,
             'meta_keywords'=>'required|unique:pages,meta_keywords,'.$this->page->id,
 
         ];

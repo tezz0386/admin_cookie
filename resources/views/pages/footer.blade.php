@@ -1,16 +1,26 @@
-<footer id="colophon" class="footer" style="background-image: url('assets/images/footerbg.jpg'); ">
+<footer id="colophon" class="footer" style="background-image: {{asset('assets/images/footerbg.jpg')}}; ">
 	
 	<div class="row footer-wrapper">
 		<div class="col-md-4 foot-content">
-			<a href="#"><img src="assets/images/logo.png"  width="150px"></a>
+			<a href="#">
+				<img @if(!SITE_LOGO == '') src="{{asset('upload/site/thumbnail/'.SITE_LOGO)}}" @else src="assets/images/logo.png" @endif  width="150px">
+			</a>
+			@if(!SITE_QUOATION == '')
+			<p>{{SITE_QUOATION}}</p>
+			@else
 			<p>Starting with a simple outline is the best way to begin telling your small business story. You want to introduce your company name and explain what your business does, where you operate.</p>
+			@endif
 		</div>
 		<div class="col-md-2 foot-content">
 			<h4 class="f-title">Contact</h4>
 			<ul>
-				<li><a class="c-footer">Madhyapur Thimi-9,Bhaktapur</a></li>
-				<li><a class="c-footer">9801192470</a></li>
-				<li class="f-mail"><a class="c-footer">imperialbaking@gmail.com</a></li>
+				<li><a class="c-footer">
+					@if(! SITE_ADDRESS == '') {{SITE_ADDRESS}} @else Madhyapur Thimi-9,Bhaktapur @endif
+				</a></li>
+				<li><a class="c-footer">
+					@if(! SITE_CONTACT == '') {{SITE_CONTACT}} @else 9801192470 @endif
+				</a></li>
+				<li class="f-mail"><a class="c-footer">@if(! SITE_EMAIL == '') {{SITE_EMAIL}} @else imperialbaking@gmail.com @endif</a></li>
 			</ul>
 		</div>
 		<div class="col-md-2 foot-content">

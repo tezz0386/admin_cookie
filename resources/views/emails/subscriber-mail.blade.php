@@ -1,6 +1,6 @@
 @extends('emails.layouts')
 @section('content')
-<h1>New Message From {{__('imperial baking')}}</h1>
+<h1>New Message From {{ $site_data->site_title}}</h1>
 <div>
     Message:  {!! $content !!}<br/>
 </div>

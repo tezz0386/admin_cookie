@@ -16,6 +16,7 @@ class MessageController extends Controller
     protected $folder_name = 'admin.message.';
     function __construct(MessageSupport $messageSupport)
     {
+        $this->middleware('auth');
         $this->messageSupport = $messageSupport;
     }
     /**
@@ -26,6 +27,7 @@ class MessageController extends Controller
     public function index()
     {
         //
+        return view($this->folder_name.'mail-index', ['mails'=>$this->messageSupport->getAll(), 'n'=>1]);
     }
 
     /**
@@ -47,6 +49,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -88,7 +91,7 @@ class MessageController extends Controller
          $reply->count = count(Reply::all()) + 1;
 
         $data=array(
-            'from'=>'imperialbaking@gmail.com',
+            'from'=>SITE_EMAIL,
             'email'=>$message->email,
             'subject'=>$request->subject,
             'content'=>$request->message,
@@ -137,8 +140,14 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy(Message $message, $id)
     {
         //
+        $message = Message::findOrFail($id);
+        if($message->delete()){
+            return redirect()->route('message.index')->with('success', 'Successfully Message Deleted');
+        }else{
+            return back()->with('error', 'Could not be deleted please try again later');
+        }
     }
 }

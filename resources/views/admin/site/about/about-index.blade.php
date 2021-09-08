@@ -9,9 +9,9 @@
 	</ul>
 </div>
 <div class="col-md-12">
-	<div>
+	<!-- <div>
 		<a href="{{route('about.create')}}" class="btn btn-danger bg-danger float-right" style="color: white;">Create New</a>
-	</div>
+	</div> -->
 	<div class="row">
 		<table class="table">
 			<thead>

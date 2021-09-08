@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Admin\SpecialController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+
+// route for front end
+Route::get('/', [ViewController::class, 'index'])->name('view.index');
+// to get about us page
+Route::get('/about-us', [ViewController::class, 'getAbout'])->name('getAbout');
+
+// route for blog
+Route::get('/blog/{product}', [ViewController::class, 'cookiesBlog'])->name('cookies-blog');
+Route::get('/blog/{product}/cornflakes', [ViewController::class, 'cornflakesBlog'])->name('cornflakes-blog');
+Route::get('/product/{cat_id}/get/{is_child}', [ViewController::class, 'getProduct'])->name('getProduct');
+Route::get('/{cookies}/cookies', [ViewController::class, 'getCookies'])->name('getCookies');
+// to get contact page
+Route::get('/contact', [ViewController::class, 'getContact'])->name('getContact');
+// To Sent mail from user to the web
+Route::post('/message/sent/{is_feedback}', [ViewController::class, 'sentMail'])->name('sentMail');
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -122,9 +136,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 
     // Route for mail
     Route::get('/mail/{message}/show', [MessageController::class, 'show'])->name('message.show');
+    Route::get('/mail', [MessageController::class, 'index'])->name('message.index');
     Route::group(['prefix'=>'mail'], function(){
     	Route::get('reply/{message}', [MessageController::class, 'getReply'])->name('message.reply');
     	Route::post('reply/{message}', [MessageController::class, 'postReply'])->name('message.postReply');
+    	Route::delete('/{mail}', [MessageController::class, 'destroy'])->name('message.destroy');
     });
 	
 });

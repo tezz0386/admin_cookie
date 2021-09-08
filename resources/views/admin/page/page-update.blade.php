@@ -27,12 +27,12 @@
 					<div class="col-md-6 col-lg-6">
 						<center>Meta Information:</center>
 						<div class="form-group">
-							<label for="meta_tag">Meta Tag:</label>
-							<textarea class="form-control" style="height: 200px;" name="meta_tag">{{old('meta_tag', $page->meta_tag)}}</textarea>
+							<label for="meta_keywords">Meta Keywords:</label>
+							<textarea class="form-control" style="height: 150px;" name="meta_keywords">{{old('meta_keywords', $page->meta_keywords)}}</textarea>
 						</div>
 						<div class="form-group">
-							<label for="meta_keywords">Meta Keywords:</label>
-							<textarea class="form-control" style="height: 250px;" name="meta_keywords">{{old('meta_keywords', $page->meta_keywords)}}</textarea>
+							<label for="meta_description">Meta Description:</label>
+							<textarea class="form-control" style="height: 300px;" name="meta_description">{{old('meta_description', $page->meta_description)}}</textarea>
 						</div>
 					</div>
 				</div>
