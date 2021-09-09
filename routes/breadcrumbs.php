@@ -1,4 +1,7 @@
 <?php 
+    Breadcrumbs::for('dashboard', function ($trail) {
+        $trail->push('Home', route('dashboard'));
+    });
     Breadcrumbs::for('admin.dashboard', function($trail){
     	$trail->push('Home', route('admin.dashboard'));
     });
@@ -172,10 +175,10 @@
 
 
 
-     // for icon
+     // for Page Meta Info
      Breadcrumbs::for('page.index', function ($trail) {
         $trail->parent('admin.dashboard');
-        $trail->push('Icon', route('page.index', 'icon'));
+        $trail->push('Icon', route('page.index'));
      });
  
  ?>

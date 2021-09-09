@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Message;
 use App\Models\Reply;
 use App\Support\MessageSupport;
+use Auth;
+use Aws\Api\Validator;
 use Illuminate\Http\Request;
 use Mail;
-use Auth;
 
 class MessageController extends Controller
 {
@@ -27,7 +28,7 @@ class MessageController extends Controller
     public function index()
     {
         //
-        return view($this->folder_name.'mail-index', ['mails'=>$this->messageSupport->getAll(), 'n'=>1]);
+        return view($this->folder_name.'mail-index', ['mails'=>$this->messageSupport->getAll(), 'n'=>1, 'messages'=>$this->messageSupport->getOnlyNotRead()]);
     }
 
     /**
@@ -83,7 +84,22 @@ class MessageController extends Controller
 
     public function postReply(Request $request, Message $message)
     {
-      
+        $validator = Validator::make($request->all(), [
+            'subjct'=>'required',
+            'message'=>'required',
+        ], 
+        $message=[
+            'subject.requires'=>'Subject must be required',
+            'message.required'=>'Your Message Body Could not be empty',
+        ]);
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
          $reply = new Reply();
          $reply->fill($request->all());
          $reply->admin_id = Auth::user()->id;

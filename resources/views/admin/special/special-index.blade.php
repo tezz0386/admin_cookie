@@ -1,12 +1,12 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'title' => 'Admin Dashboard-special', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 @section('content')
-<div>
-	<a href="{{route('special.create')}}" class="btn btn-danger bg-danger" style="color: white;">Create New Special</a>
-</div>
 <div class="col-md-12">
 	<div class="card card-plain table-plain-bg">
 		<div class="card-header ">
 			<h4 class="card-title">Today's Special</h4>
+		</div>
+		<div>
+			<a href="{{route('special.create')}}" class="btn btn-danger bg-danger float-right" style="color: white;">Create New Special</a>
 		</div>
 		<div class="card-body table-full-width table-responsive">
 			<table class="table table-hover">

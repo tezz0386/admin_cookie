@@ -31,6 +31,8 @@
       </div><!--- .wrapper -->
     </div>
     @endsection
+    @if(isset($products) && !$products == '')
     @section('title', $products->title_tag)
     @section('meta_keywords', $products->meta_keywords)
     @section('meta_description', $products->meta_description)
+    @endif

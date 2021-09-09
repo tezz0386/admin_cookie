@@ -46,6 +46,8 @@
       </div><!--- .wrapper -->
     </div>
     @endsection
-    @section('title', $metaInfo->title_tag)
-    @section('keywords', $metaInfo->meta_keywords)
-    @section('description', $metaInfo->meta_description)
+    @if(!$metaInfo == '')
+      @section('meta_keywords', $metaInfo->meta_keywords)
+      @section('meta_description', $metaInfo->meta_tag)
+      @section('title', $metaInfo->title_tag)
+    @endif

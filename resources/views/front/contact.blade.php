@@ -27,7 +27,7 @@
                   </div>
                 </div>
                 
-                <button type="button" class="btn btn-danger" value="submit">Submit</button>
+                <button type="submit" class="btn btn-danger" value="submit">Submit</button>
                 
               </form>
             </div>
@@ -58,6 +58,8 @@
       </div><!--- .wrapper -->
     </div>
     @endsection
-    @section('title', $metaInfo->title_tag)
-    @section('meta_keywords', $metaInfo->meta_keywords)
-    @section('meta_description', $metaInfo->meta_description)
+    @if(!$metaInfo == '')
+      @section('meta_keywords', $metaInfo->meta_keywords)
+      @section('meta_description', $metaInfo->meta_tag)
+      @section('title', $metaInfo->title_tag)
+    @endif

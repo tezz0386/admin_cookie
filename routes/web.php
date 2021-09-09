@@ -33,7 +33,7 @@ Route::get('/', [ViewController::class, 'index'])->name('view.index');
 Route::get('/about-us', [ViewController::class, 'getAbout'])->name('getAbout');
 
 // route for blog
-Route::get('/blog/{product}', [ViewController::class, 'cookiesBlog'])->name('cookies-blog');
+Route::get('/blog/{slug}', [ViewController::class, 'cookiesBlog'])->name('cookies-blog');
 Route::get('/blog/{product}/cornflakes', [ViewController::class, 'cornflakesBlog'])->name('cornflakes-blog');
 Route::get('/product/{cat_id}/get/{is_child}', [ViewController::class, 'getProduct'])->name('getProduct');
 Route::get('/{cookies}/cookies', [ViewController::class, 'getCookies'])->name('getCookies');
@@ -51,6 +51,8 @@ Auth::routes();
 Route::group(['prefix'=>'super', 'middleware'=>'role:super'], function(){
 
 });
+
+
 // rouet for admin
 Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 	Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard');
@@ -147,12 +149,11 @@ Route::group(['prefix'=>'admin', 'middleware'=>'role:admin'], function(){
 
 
 
-// Route::get('/admin/home', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
 
 
 // Rooute for profile
 Route::group(['middleware' => 'auth', 'prefix'=>'admin'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::patch('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::patch('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

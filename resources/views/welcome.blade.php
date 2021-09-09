@@ -129,7 +129,6 @@
                     </div><!-- #product -->
                     @endif
                     @if(isset($special) && !$special == '')
-                    <label>Hello</label>
                     <div id="menu" class="special main-section w3-animate-fading w3-animate-zoom">
                         <div class="container">
                             <h1 class="text-center title"><span class="title-em">Today's</span> Special</h1>
@@ -206,6 +205,8 @@
                         </div>
                         
                         @endsection
-                        @section('meta_keywords', $metaInfo->meta_keywords)
-                        @section('meta_description', $metaInfo->meta_tag)
-                        @section('title', $metaInfo->title_tag)
+                        @if(!$metaInfo == '')
+                         @section('meta_keywords', $metaInfo->meta_keywords)
+                         @section('meta_description', $metaInfo->meta_tag)
+                         @section('title', $metaInfo->title_tag)
+                        @endif

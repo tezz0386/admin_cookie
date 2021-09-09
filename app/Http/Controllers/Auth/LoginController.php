@@ -56,7 +56,7 @@ class LoginController extends Controller
         }else{
             $url = 'user.index';
         }
-        return redirect()->route($url);
+        // return redirect()->route($url);
     }
 
 }

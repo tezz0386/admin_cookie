@@ -16,34 +16,6 @@
                     <p>{{ __("Dashboard") }}</p>
                 </a>
             </li>
-            
-            <!-- <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#laravelExamples" @if($activeButton =='laravel') aria-expanded="true" @endif>
-                    <i>
-                    <img src="{{ asset('light-bootstrap/img/laravel.svg') }}" style="width:25px">
-                    </i>
-                    <p>
-                        {{ __('Product Category Management') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse @if($activeButton =='laravel') show @endif" id="laravelExamples">
-                    <ul class="nav">
-                        <li class="nav-item @if($activePage == 'user') active @endif">
-                            <a class="nav-link" href="{{route('profile.edit')}}">
-                                <i class="nc-icon nc-single-02"></i>
-                                <p>{{ __("Add Category") }}</p>
-                            </a>
-                        </li>
-                        <li class="nav-item @if($activePage == 'user-management') active @endif">
-                            <a class="nav-link" href="{{route('user.index')}}">
-                                <i class="nc-icon nc-circle-09"></i>
-                                <p>{{ __("View Category") }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> -->
             <li class="nav-item @if($activePage == 'table') active @endif">
                 <a class="nav-link" href="{{route('admin.category.index')}}">
                     <i class="nc-icon nc-notes"></i>
@@ -83,7 +55,7 @@
              <li class="nav-item @if($activePage == 'notifications') active @endif">
                 <a class="nav-link" href="{{route('message.index')}}">
                     <i class="nc-icon nc-bell-55"></i>
-                    <p>{{ __("Mail") }} <label style="background: red; color: white; width: 38px; text-align: center; margin-left: 2px;"> @if(isset($message)) {{count($messages)}} @endif</label></p>
+                    <p>{{ __("Mail") }} <label style="background: red; color: white; width: 38px; text-align: center; margin-left: 2px;"> @if(isset($messages)) {{count($messages)}} @endif</label></p>
                 </a>
             </li>
         </ul>
