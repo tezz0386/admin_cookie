@@ -117,9 +117,9 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="col-md-2 foot-content">
       <h4 class="f-title">Links</h4>
       <ul>
-        <li><a href="about.html"> about us</a></li>
-        <li><a href="contact.html"> our location</a></li>
-        <li><a href="blog.html"> product</a></li>
+        <li><a href="{{route('getAbout')}}"> about us</a></li>
+        <li><a href="{{route('getContact')}}"> our location</a></li>
+        <li><a href="{{route('getProducts')}}"> product</a></li>
         <!-- <li><a href="#"> shop</a></li> -->
       </ul>
     </div>
@@ -131,7 +131,7 @@ The above copyright notice and this permission notice shall be included in all c
         <li><a href="https://twitter.com/?lang=en"><i class="fab fa-twitter"></i></a></li>
       </ul>
     </div> -->
-    <div class="col-md-4 p-0">
+     <div class="col-md-4 p-0 footer-frame">
       <h4 class="f-title">Location</h4>
       
 
@@ -145,6 +145,12 @@ The above copyright notice and this permission notice shall be included in all c
   </div>
       
     </footer>
+
+    <style type="text/css">
+            .footer-frame iframe {
+             max-height: 200px;
+            }
+    </style>
   </body>
   <!--   Core JS Files   -->
   <script src="{{ asset('light-bootstrap/js/core/jquery.3.2.1.min.js') }}" type="text/javascript"></script>

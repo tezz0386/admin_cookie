@@ -49,12 +49,12 @@ class ViewController extends Controller
     }
 
 
-    // tor return blog
-    public function cookiesBlog(Product $product)
+    // tor return cookies bnlog only
+    public function cookiesBlog(Product $product, $id)
     {
+        $product = Product::findOrFail($id);
         $subCategory = SubCategory::where('id', $product->child_id)->first();
         $category= Category::findOrFail($subCategory->parent_id);
-        // return $subCategory;
         return view('front.blog', [
             'cookies'=>SubCategory::with('products')->get(),
             'product'=>$product,
@@ -63,17 +63,19 @@ class ViewController extends Controller
             'category'=>$category,
         ]);
     }
+    // to return cornflakes blog only
     public function cornflakesBlog(Product $product)
     {
         $category= Category::findOrFail($product->parent_id);
         // return $subCategory;
-        return view('front.cornflakes', [
+        return view('front.cornflakes-blog', [
             'cookies'=>SubCategory::with('products')->get(),
             'product'=>$product,
             'cornflakes' => Category::with('products')->get(),
             'category'=>$category,
         ]);
     }
+    // to return profucts
     public function getProduct($id, $is_child)
     {
         $products='';
@@ -85,6 +87,14 @@ class ViewController extends Controller
         }
         return view('front.dcookies', [
             'products'=>$products,
+        ]);
+    }
+    // to return all products 
+    public function getProducts()
+    {
+        return view('front.products', [
+            'cookies'=>SubCategory::with('products')->get(),
+            'cornflakes' => Category::with('products')->where('has_child', 0)->first(),
         ]);
     }
 // to return contact
@@ -140,5 +150,32 @@ class ViewController extends Controller
         }else{
             return back()->with('error', 'Could not Sent please try again');
         }
+    }
+
+// to return all cokies to blog cookies-all page
+    public function getAllCookies()
+    {
+        $categories = SubCategory::with('products')->get();
+        $subCategory=SubCategory::orderByDesc('created_at')->first();
+        $metaInfo['title_tag'] = $subCategory->title_tag;
+        $metaInfo['meta_keywords']=$subCategory->meta_keywords;
+        $metaInfo['meta_description'] = $subCategory->meta_description;
+        return view('front.cookies-all', [
+            'categories'=>$categories,
+            'metaInfo'=>$metaInfo
+        ]);
+    }
+
+// to return all cornflakes to blog cornflakes-all page
+    public function getAllCornflakes()
+    {
+        $categories = Category::with('products')->where('has_child', 0)->first();
+        $metaInfo['title_tag'] = $categories->title_tag;
+        $metaInfo['meta_keywords']=$categories->meta_keywords;
+        $metaInfo['meta_description'] = $categories->meta_description;
+        return view('front.cornflakes-all', [
+            'categories'=>$categories,
+            'metaInfo'=>$metaInfo,
+        ]);
     }
 }

@@ -48,9 +48,6 @@
           <p>@if(! SITE_CONTACT == '') {{SITE_CONTACT}} @endif</p>
           <p>@if(!SITE_EMAIL=='') {{SITE_EMAIL}} @endif</p>
         </article>
-        <ul class="float-right social-links">
-          <li><a href="{{SITE_FACEBOOK}}"><i class="fab fa-facebook-f"></i>Facebook/Dawncookies</a></li>
-        </ul>
       </div>
       </div> <!-- .container -->
       

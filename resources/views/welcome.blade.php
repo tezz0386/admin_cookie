@@ -88,7 +88,7 @@
                                     @endforeach
                                 </div>
                                 <div class="more text-center">
-                                    <a href="cookies.html" class="btn more-btn">More</a>
+                                    <a href="{{route('getAllCokies')}}" class="btn more-btn">More</a>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                                         @endforeach
                                     </div>
                                     <div class="more text-center">
-                                        <a href="cornflake.html" class="btn more-btn">More</a>
+                                        <a href="{{route('getAllCornflakes')}}" class="btn more-btn">More</a>
                                     </div>
                                 </div>
                             </div>

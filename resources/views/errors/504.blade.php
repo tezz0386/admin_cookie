@@ -15,18 +15,27 @@
     <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/custom.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('front-assets/css/mobile.css')}}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>404 page</title>
+    <title>504 page</title>
     <link rel="icon"  type = "image/x-icon" href="assets/images/logo.png">
   </head>
   <body >
    
-   <div id="error-page" class="error text-center">
-     <ul>
-      <li><h1 class="error-title">Oops !!! Sorry</h1></li>
-      <li><h2>404 page not found</h2></li>
-      <li><p>The page you have been looking for might have been removed or is temporarily unavailable</p></li>
-       <li><a href="index.htm" class="btn error-btn">Back to homepage</a></li>
-     </ul>
+   <div id="error-page-next" class="error-501 text-center">
+    <div class="container">
+      <div class="row error-wrraper">
+        <div class="col-md-4 left-sidebar-error">
+          <ul>
+            <li><h1>501</h1></li>
+            <li><p>NOT IMPLEMENTED</p></li>
+          </ul>
+        </div>
+        <div class="col-md-8 sidebar-error">
+          <li><p>The server either doesnot recognize the request mode,or it lacks the ability to fulfill the request.</p></li>
+          <li><img src="assets/images/logo.png" height="100px" width="100px"></li>
+          <li>Managed by <a href="https://onvirotech.com/">www.onvirotech.com</a></li>
+        </div>
+      </div>
+    </div>
    </div> 
 
 

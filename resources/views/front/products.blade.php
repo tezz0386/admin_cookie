@@ -8,19 +8,7 @@
         <!-- <p>Our all Products</p> -->
       </div>
       <div class="cookies row">
-        <h1 class="text-center"> @if(isset($category) && !$category==''){{$category->title}} @endif</h1>
-
-        @if(isset($product) && !$product == '')
-        <div class="col-md-4 cookie-discription">
-          <img src="{{asset('uploads/product/thumbnail/'.$product->image)}}" class="img-fluid">
-          <div class="cookie-info">
-            <h2>@if(isset($product) && !$product==''){{ $product->title}} @endif</h2>
-            <p>@if(isset($product) && !$product==''){{Substr($product->description, 0, 200)}} @endif</p>
-            <!-- <button type="button" class="btn btn-danger">Order Now</button> -->
-          </div>
-        </div>
-        @endif
-
+        <h1 class="text-center"> Cookies  </h1>
         @if(isset($cookies) && count($cookies)>0)
         @foreach($cookies as $cookie)
         @foreach($cookie->products as $product)
@@ -36,13 +24,10 @@
         @endforeach
         @endif
       </div>
-
-
-      @if(isset($cornflakes) && count($cornflakes)>0)
+      @if(isset($cornflakes) && !$cornflakes=='')
       <div class="cornflakes row">
         <h1 class="text-center"> Cornflakes </h1>
-        @foreach($cornflakes as $conflake)
-        @foreach($conflake->products as $product)
+        @foreach($cornflakes->products as $product)
         <div class="col-md-4 cornflakes-discription">
           <img src="{{asset('uploads/product/thumbnail/'.$product->image)}}" class="img-fluid">
           <div class="cornflakes-info">
@@ -52,15 +37,14 @@
           </div>
         </div>
         @endforeach
-        @endforeach
       </div>
-
       @endif
     </div>
     </div><!--- .wrapper -->
   </div>
-@endsection
-
-@section('title', $subCategory->title_tag)
-@section('meta_keywords', $subCategory->meta_keywords)
-@section('meta_description', $subCategory->meta_description)
+  @endsection
+  @if(isset($cornflakes) && !$cornflakes == '')
+  @section('title', $cornflakes->title_tag)
+  @section('meta_keywords', $cornflakes->meta_keywords)
+  @section('meta_description', $cornflakes->meta_description)
+  @endif

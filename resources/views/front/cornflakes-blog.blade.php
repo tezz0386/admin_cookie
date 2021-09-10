@@ -16,7 +16,7 @@
             <img src="{{asset('uploads/product/thumbnail/'.$product->image)}}" class="img-fluid">
             <div class="cookie-info">
               <h2>@if(isset($product) && !$product==''){{ $product->title}} @endif</h2>
-              <p>@if(isset($product) && !$product==''){{ $product->description}} @endif</p>
+              <p>@if(isset($product) && !$product==''){{Substr($product->description, 0, 200)}} @endif</p>
               <!-- <button type="button" class="btn btn-danger">Order Now</button> -->
             </div>
           </div>
@@ -28,7 +28,7 @@
             <img src="{{asset('uploads/product/thumbnail/'.$product->image)}}" class="img-fluid">
             <div class="cornflakes-info">
               <h2>{{$product->title}}</h2>
-              <p>{{$product->description}}</p>
+              <p>{{Substr($product->description, 0, 200)}}</p>
               <!-- <button type="button" class="btn btn-danger">Order Now</button> -->
             </div>
           </div>
@@ -45,7 +45,7 @@
           <img src="{{asset('uploads/product/thumbnail/'.$product->image)}}" class="img-fluid">
           <div class="cookie-info">
             <h2>{{$product->title}}</h2>
-            <p>{{$product->description}}</p>
+            <p>{{Substr($product->description, 0, 200)}}</p>
             <!-- <button type="button" class="btn btn-danger">Order Now</button> -->
           </div>
         </div>

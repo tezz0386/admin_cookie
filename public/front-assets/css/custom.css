@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 body{
-	overflow-x: hidden;
+    overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
 }
 .main-banner {
-	position: relative;
+    position: relative;
 }
 .btn-main {
     background: #6fbe44;
@@ -27,7 +27,7 @@ body{
     height: 370px;
 }
 .owl-dots .owl-dot {
-	background: #6fbe44 !important;
+    background: #6fbe44 !important;
     height: 10px;
     width: 10px;
     margin: 0 5px;
@@ -36,12 +36,17 @@ body{
 .main-slider .owl-dots {
     text-align: center;
 }
+.email-textarea {
+    display: block;
+    width: 98.6%;
+    margin: 9px 0 0 0;
+}
 .main-slider .owl-nav {
     display: none;
 }
 .main-slider ul li {
-	list-style: none;
-	display: inline-block;
+    list-style: none;
+    display: inline-block;
 }
 .main-slider .btn-play {
     color: #fff;
@@ -89,6 +94,14 @@ body{
     border-radius: 0px !important;
     height: 42px;
     width: 42px;
+}
+.slider-wrapper .card {
+    background: transparent;
+    border: none;
+}
+.servicesl-wrapper .card {
+    background: transparent;
+    border: none;
 }
 h1 {
     text-transform: capitalize;
@@ -617,6 +630,44 @@ form input {
     font-weight: bold;
     font-size: 25px;
 }
+.left-sidebar-error p {
+    font-size: 25px;
+    color: #808080a6;
+}
+.error-wrraper {
+    padding: 200px 0px;
+}
+.footer-frame iframe {
+    max-height: 200px;
+}
+.error li h1 {
+    font-size: 60px;
+    margin-bottom: 40px;
+    
+    color: #6c63ff;
+}
+.error {
+    padding: 18em 0;
+}
+.error-501 h1 {
+    font-size: 77px;
+    color: #a13423;
+}
+.sidebar-error {
+    text-align: left;
+}
+.sidebar-error a {
+    text-decoration: none;
+    color: #a13423;
+    font-style: italic;
+}
+.sidebar-error p {
+    margin: 0;
+}
+.sidebar-error li {
+    padding: 6px 0;
+    border-bottom: 1px solid #80808021;
+}
 .dropdown-product li a {
     text-decoration: initial;
     margin: 7px 0 7px 13px !important;
@@ -692,6 +743,13 @@ form input {
     background: #f0820c;
     padding: 16px 0 88px 0;
     margin: 0 42px 0 0;
+}
+.error-btn {
+    background: #6c63ff;
+    color: #f9fafb;
+    padding: 17px 43px;
+    font-size: 18px;
+    border: 1px solid #6c63ff;
 }
 .contact-loacation ul li {
     font-size: 24px;

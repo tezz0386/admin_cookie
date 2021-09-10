@@ -34,8 +34,14 @@ Route::get('/about-us', [ViewController::class, 'getAbout'])->name('getAbout');
 
 // route for blog
 Route::get('/blog/{slug}', [ViewController::class, 'cookiesBlog'])->name('cookies-blog');
+
 Route::get('/blog/{product}/cornflakes', [ViewController::class, 'cornflakesBlog'])->name('cornflakes-blog');
+
+Route::get('/cookies', [ViewController::class, 'getAllCookies'])->name('getAllCokies');
+Route::get('/cornflakes', [ViewController::class, 'getAllCornflakes'])->name('getAllCornflakes');
+
 Route::get('/product/{cat_id}/get/{is_child}', [ViewController::class, 'getProduct'])->name('getProduct');
+Route::get('/products', [ViewController::class, 'getProducts'])->name('getProducts');
 Route::get('/{cookies}/cookies', [ViewController::class, 'getCookies'])->name('getCookies');
 // to get contact page
 Route::get('/contact', [ViewController::class, 'getContact'])->name('getContact');
